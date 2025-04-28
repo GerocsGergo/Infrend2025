@@ -1,0 +1,61 @@
+Mindenhova:
+
+    Verzió jobb fentre/lentre
+
+Belépési menü: 
+
+    -Szépíteni
+
+Főmenü:
+
+    -egymás mellett és alatt oszlopokba rendezve a gombok / fent menü sávba rendezve a gombok / bal oldali menübe rendezve a gombok
+        -3 fajta (esetleg 3 hasáb): ügyefelekkel kapcsolatos gombok, kazetákkal, egyéb
+    -legfent valami kék szöveg/háttérkép az alkalmazás névvel stb
+
+        Kis menük száma: 
+            összes ügyfél lekérdezése,
+            ügyfél keresése, (ezután megnyitja az ügyfél adatlapját)
+            ügyfél módosítása,
+            ügyfél törlése,
+
+            kazetták, dvdk lekérdezése,
+            kikölcsönzöttek lekérdezése idő megadásával (pl 1 nap, ez megadható)                        ????ezt nem teljesen értem
+
+            kölcsönzés rögzítése,
+            kölcsönzés felszabadítása, (megnyitja a kazetta/dvd adatlapját és ott lehet)
+
+
+
+
+Mi kell:
+    Ügyfelek nyilvántartása:
+        egyedfi azonosító (rendszer állítja elő)
+        Név, 
+        telefonszám, 
+        személyiszám, 
+        lakcím, 
+        státusz (aktiv?????, törölt????),
+
+    Ügyfelek keresése:
+        név,
+        személyiszám,
+        azonosító alapján
+    
+    Ügyfelek módosítása:
+    Ügyfelek törlése:
+        -státusz váltás nem sima törlés!!!!!!
+
+
+    Kazetták, dvd-k nyilvántartása:
+        azonosító,
+        cím,
+        beszerzés dátuma,
+        sorszám,                                ???? ez lenne az azonosító?
+        státusz (szabad, kikölcsönzött, selejtezett)
+        kikölcsönözte ki ha ki van,             ???? igy kene sztem
+        kölcsönzés ideje,                       ???? igy kene sztem
+
+
+
+
+
