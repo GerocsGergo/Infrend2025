@@ -8,11 +8,11 @@ import { VersionDTO } from '../models/models';
 
 
 export class VersionService {
-  constructor(private http: HttpClient) {} // Standard dependency injection
-  //http = inject(HttpClient);
+  //constructor(private http: HttpClient) {} // Standard dependency injection
+  http = inject(HttpClient);
 
   getVersion() {
-    return this.http.get<VersionDTO>('/api/version');
+    return this.http.get<VersionDTO>('http://localhost:3306/api/version');
   }
   
 }
