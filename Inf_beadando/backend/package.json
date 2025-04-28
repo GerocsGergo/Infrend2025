@@ -12,15 +12,17 @@
    "description": "",
    "dependencies": {
       "express": "^5.1.0",
+      "fs": "^0.0.1-security",
+      "marked": "^15.0.11",
       "mysql2": "^3.14.0",
+      "pg": "^8.14.1",
       "reflect-metadata": "^0.2.2",
-      "typeorm": "0.3.22",
-      "pg": "^8.14.1"
+      "typeorm": "0.3.22"
    },
    "devDependencies": {
+      "@types/express": "^5.0.1",
       "@types/node": "^22.14.1",
       "ts-node": "^10.9.2",
-      "typescript": "^5.8.2",
-      "@types/express": "^5.0.1"
+      "typescript": "^5.8.2"
    }
 }

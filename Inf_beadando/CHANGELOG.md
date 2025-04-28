@@ -1,6 +1,10 @@
 # Changelog
 
 ## [v0.0.0] - 2025-04-25
-### Initial Release
+### WIP Version
 - Welcome page created
-- Version control
+
+## [v0.0.1] - 2025-04-25
+### WIP Version
+- Version control and displaying
+- Database connection repaired
