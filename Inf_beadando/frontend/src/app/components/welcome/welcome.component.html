@@ -2,13 +2,13 @@
   <div class="welcome-container">
       <div class="welcome-island">
 
-        <h1>Welcome, Boss!</h1>
+        <h1>Welcome to VideoWarehouse!</h1>
         <button routerLink="/login" class="login-button">Enter page</button>
       </div>
     </div>
 
     <div class="version-container">  
-      <div class="version-counter">0.0.0</div>
-      <div class="version-counter">change log</div>
+      <div class="version-counter">{{ versionInfo?.backendVersion || 'N/A' }}</div>
+      <div class="version-changelog">change log</div>
     </div>
 </div>

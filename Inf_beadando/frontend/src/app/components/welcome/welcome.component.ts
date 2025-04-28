@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { Component, OnInit } from '@angular/core';
+import { VersionService } from '../../services/version.service';
 
 @Component({
   selector: 'app-welcome',
@@ -7,6 +7,23 @@ import { environment } from '../../environments/environment';
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.css'
 })
-export class WelcomeComponent {
-  appVersion = environment.version;
+export class WelcomeComponent implements OnInit{
+
+  versionInfo: any;
+  isLoading = true;
+
+  constructor(private versionService: VersionService) {}
+
+  ngOnInit() {
+    this.versionService.getVersion().subscribe({
+      next: (data) => {
+        this.versionInfo = data;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Failed to load version:', err);
+        this.isLoading = false;
+      }
+    });
+  }
 }
