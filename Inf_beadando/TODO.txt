@@ -1,6 +1,6 @@
 Mindenhova:
 
-    Verzió jobb fentre/lentre
+    Verzió jobb lentre
 
 Belépési menü: 
 

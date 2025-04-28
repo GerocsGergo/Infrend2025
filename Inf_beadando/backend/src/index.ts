@@ -1,19 +1,25 @@
 import { AppDataSource } from "./data-source"
-import { User } from "./entity/User"
+import express from 'express';
+import { router } from "./routes";
 
-AppDataSource.initialize().then(async () => {
+async function main() {
+    await AppDataSource.initialize();
 
-    console.log("Inserting a new user into the database...")
-    const user = new User()
-    user.nev = "Viktorkaka"
-    user.eletkor = 25
-    await AppDataSource.manager.save(user)
-    console.log("Saved a new user with id: " + user.id)
+    const app = express();
 
-    console.log("Loading users from the database...")
-    const users = await AppDataSource.manager.find(User)
-    console.log("Loaded users: ", users)
+    app.use(express.json());
 
-    console.log("Here you can setup and run express / fastify / any other framework.")
+    app.use('/api', router);
 
-}).catch(error => console.log(error))
+    app.listen(3306, (err) => {
+        if (err) {
+            console.error(err);
+            return;
+        }
+
+        console.log('Server is listening on 3306 ...');
+    });
+}
+
+
+
