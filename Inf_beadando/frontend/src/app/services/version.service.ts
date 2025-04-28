@@ -12,7 +12,7 @@ export class VersionService {
   http = inject(HttpClient);
 
   getVersion() {
-    return this.http.get<VersionDTO>('http://localhost:3306/api/version');
+    return this.http.get<VersionDTO>('/api/version');
   }
   
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { VersionService } from '../../services/version.service';
+import { VersionDTO } from '../../models/models';
 
 @Component({
   selector: 'app-welcome',
@@ -9,21 +10,17 @@ import { VersionService } from '../../services/version.service';
 })
 export class WelcomeComponent implements OnInit{
 
-  versionInfo: any;
-  isLoading = true;
 
-  constructor(private versionService: VersionService) {}
+  versionService = inject(VersionService)
+  versionInfo: VersionDTO | null = null;
 
   ngOnInit() {
     this.versionService.getVersion().subscribe({
-      next: (data) => {
-        this.versionInfo = data;
-        this.isLoading = false;
-      },
+      next: (versionInfo) =>this.versionInfo = versionInfo,
       error: (err) => {
         console.error('Failed to load version:', err);
-        this.isLoading = false;
       }
     });
   }
+  
 }

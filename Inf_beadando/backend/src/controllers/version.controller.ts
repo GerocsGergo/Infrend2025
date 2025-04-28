@@ -7,7 +7,8 @@ export class VersionController {
         try {
             //const entities = await this.repository.find();
             //res.json(entities);
-            res.json("0.0.0");
+            res.setHeader('Content-Type', 'application/json');
+            res.json({version: '0.0.0'});
         } catch (err) {
             this.handleError(res, err);
         }

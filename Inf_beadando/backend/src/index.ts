@@ -11,13 +11,14 @@ async function main() {
 
     app.use('/api', router);
 
-    app.listen(3306, (err) => {
+
+    app.listen(3000, (err) => {
         if (err) {
             console.error(err);
             return;
         }
 
-        console.log('Server is listening on 3306 ...');
+        console.log('Server is listening on 3000 ...');
     });
 }
 
