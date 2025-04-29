@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { VersionService } from '../../services/version.service';
-import { VersionDTO } from '../../models/models';
+import { VersionDTO } from '../../../../models';
 import { Router } from '@angular/router';
 
 @Component({

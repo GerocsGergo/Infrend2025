@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { VersionDTO } from '../models/models';
+import { VersionDTO } from '../../../models';
 
 @Injectable({ 
     providedIn: 'root' 
