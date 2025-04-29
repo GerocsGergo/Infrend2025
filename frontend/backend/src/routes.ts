@@ -7,9 +7,14 @@ import { AppDataSource } from './data-source';
 const router = Router();
 
 const versionController = new VersionController();
-const testController = new TestController(AppDataSource);
+
 
 router.get('/version', versionController.getVersion);
-router.get('/getOneUser', testController.getOneUser);
+
+//FOR the tests
+const testController = new TestController(AppDataSource);
+
+router.get('/getOneUser/:id', testController.getOneUser);
+router.get('/getAllUser', testController.getAllUser);
 
 export { router };

@@ -13,14 +13,27 @@ export class TestMenuComponent implements OnInit{
   testService = inject(TestService);
 
   user: UserDTO | null = null;
+  users: UserDTO[] = [];
 
+  ngOnInit(): void { 
+    this.testService.getAllUser().subscribe({
+      next: (users) => this.users = users,
+      error: (err) => {
+        console.error('Failed to load users', err)
+      }
+      
+    });
 
-  ngOnInit() {
     this.testService.getOneUser(1).subscribe({
       next: (user) =>this.user = user,
       error: (err) => {
         console.error('Failed to load user:', err);
       }
     });
-  }
+    }
+
+    //SHIFT + ALT + A = mi a geci ez kurva jo
+
+    
+  
 }

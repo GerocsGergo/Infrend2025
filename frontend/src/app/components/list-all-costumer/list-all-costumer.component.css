@@ -1,0 +1,42 @@
+/* Page Style */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .page {
+    padding: 20px;
+  }
+  
+  .title-container {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .title {
+    font-size: 48px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  
+  /* Back Button Style */
+  .back-button {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 12px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .back-button:hover {
+    background-color: #0056b3;
+  }

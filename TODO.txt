@@ -18,6 +18,8 @@ Főmenü:
 
             kazetták, dvdk lekérdezése,
             kikölcsönzöttek lekérdezése idő megadásával (pl 1 nap, ez megadható)                        ????ezt nem teljesen értem
+	    kazetta/dvd törlése
+	    kazetta/dvd hozzáadása
 
             kölcsönzés rögzítése,
             kölcsönzés felszabadítása, (megnyitja a kazetta/dvd adatlapját és ott lehet)
@@ -28,12 +30,12 @@ Főmenü:
 
 Mi kell:
     Ügyfelek nyilvántartása:
-        egyedfi azonosító (rendszer állítja elő)
-        Név, 
+        azonosító
+        név, 
         telefonszám, 
         személyiszám, 
         lakcím, 
-        státusz (aktiv?????, törölt????),
+        státusz (aktiv, törölt),
 
     Ügyfelek keresése:
         név,

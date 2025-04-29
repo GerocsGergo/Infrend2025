@@ -13,5 +13,8 @@ export class TestService {
   getOneUser(id: number) {
     return this.http.get<UserDTO>('/api/getOneUser/' + id);
   }
+  getAllUser(){
+    return this.http.get<UserDTO[]>('/api/getAllUser');
+  }
   
 }

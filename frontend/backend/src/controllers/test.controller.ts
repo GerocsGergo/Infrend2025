@@ -8,6 +8,21 @@ export class TestController {
         this.userTable = dataSource.getRepository(User);
       }
     
+      getAllUser = async (req, res) => {
+        try {
+            const users = await this.userTable.find();
+
+            if (!users) {
+                res.status(404).json({ message: 'The data does not exist.' });
+                return;
+            }
+
+            res.json(users);
+        } catch (err) {
+            this.handleError(res, err);
+        }
+        }
+
     getOneUser = async (req, res) => {
         try {
             const id = req.params['id'];

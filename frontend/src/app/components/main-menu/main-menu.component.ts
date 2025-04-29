@@ -14,4 +14,20 @@ export class MainMenuComponent {
   openTest(){
     this.router.navigate(['test-menu']);
   }
+
+  openAllCustomer(){
+    this.router.navigate(['list-all-costumer']);
+  }
+
+  openFindCostumer(){
+    this.router.navigate(['find-costumer']);
+  }
+
+  openModifyCostumer(){
+    this.router.navigate(['modify-costumer']);
+  }
+
+  openDeleteCostumer(){
+    this.router.navigate(['delete-costumer']);
+  }
 }

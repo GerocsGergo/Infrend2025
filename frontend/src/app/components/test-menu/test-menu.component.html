@@ -2,4 +2,14 @@
     <h2>User ID: {{ user?.id || 'data not found' }}</h2>
     <p><strong>Name:</strong> {{ user?.nev || 'data not found'}}</p>
     <p><strong>Age:</strong> {{ user?.eletkor || 'data not found'}}</p>
+    <div></div>
+    
+    @for(user of users; track user.id) {
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.nev }}</td>
+            <td>{{ user.eletkor }}</td>
+        </tr>
+    }
+
   </div>
