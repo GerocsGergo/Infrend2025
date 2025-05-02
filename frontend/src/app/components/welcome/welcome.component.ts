@@ -14,7 +14,9 @@ export class WelcomeComponent implements OnInit{
 
   versionService = inject(VersionService)
   router = inject(Router);
-  versionInfo: VersionDTO | null = null;
+  versionInfo: VersionDTO = {
+    version: ''
+  };
 
   ngOnInit() {
     this.versionService.getVersion().subscribe({

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteCostumerComponent } from './delete-costumer.component';
+import { FindCustomerComponent } from './find-customer.component';
 
-describe('DeleteCostumerComponent', () => {
-  let component: DeleteCostumerComponent;
-  let fixture: ComponentFixture<DeleteCostumerComponent>;
+describe('FindCustomerComponent', () => {
+  let component: FindCustomerComponent;
+  let fixture: ComponentFixture<FindCustomerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeleteCostumerComponent]
+      imports: [FindCustomerComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DeleteCostumerComponent);
+    fixture = TestBed.createComponent(FindCustomerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

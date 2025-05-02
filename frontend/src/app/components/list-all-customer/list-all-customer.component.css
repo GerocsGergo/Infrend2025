@@ -40,3 +40,38 @@ body {
   .back-button:hover {
     background-color: #0056b3;
   }
+
+  .customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  
+  .customer-table th,
+  .customer-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .customer-table th {
+    background-color: #007BFF;
+    color: white;
+  }
+  
+  .customer-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .customer-table button {
+    padding: 6px 12px;
+    background-color: #28a745;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .customer-table button:hover {
+    background-color: #218838;
+  }

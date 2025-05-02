@@ -1,0 +1,73 @@
+<div class="page">
+    <!-- Page Title -->
+    <div class="title-container">
+      <h1 class="title">VideoWarehouse</h1>
+    </div>
+  
+    <!-- Customer Details Header -->
+    <h2 class="customer-title">Ügyfél: {{ customer.nev }}</h2>
+  
+    <div class="main-menu-island">
+      <div *ngIf="showUpdatePopup" class="popup-overlay">
+        <div class="popup">
+          <h3>Adat módosítása: {{ getFormattedField(fieldToUpdate) }}</h3>
+          <input type="text" [(ngModel)]="newValue" />
+          <div class="popup-buttons">
+            <button (click)="updateCustomer()">Mentés</button>
+            <button (click)="closeUpdatePopup()">Mégse</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Customer Data Table -->
+      <table class="customer-table">
+        <thead>
+          <tr>
+            <th>Adattípus</th>
+            <th>Érték</th>
+            <th>Akció</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Azonosító</th>
+            <td>{{ customer.azonosito }}</td>
+            <td></td>
+          </tr>
+          <tr>
+            <th>Név</th>
+            <td>{{ customer.nev }}</td>
+            <td><button class="update-button" (click)="openUpdatePopup('nev')" >Módosítás</button></td>
+          </tr>
+          <tr>
+            <th>Telefonszám</th>
+            <td>{{ customer.telefonszam }}</td>
+            <td><button class="update-button" (click)="openUpdatePopup('telefonszam')" >Módosítás</button></td>
+          </tr>
+          <tr>
+            <th>Személyiszám</th>
+            <td>{{ customer.szemelyiszam }}</td>
+            <td><button class="update-button" (click)="openUpdatePopup('szemelyiszam')" >Módosítás</button></td>
+          </tr>
+          <tr>
+            <th>Lakcím</th>
+            <td>{{ customer.lakcim }}</td>
+            <td><button class="update-button" (click)="openUpdatePopup('lakcim')" >Módosítás</button></td>
+          </tr>
+          <tr>
+            <th>Státusz</th>
+            <td>{{ customer.statusz }}</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- Action Buttons (Two Buttons) -->
+      <div class="button-container">
+        <button class="bottom-button" (click)="openMainMenu()">Vissza a főmenübe</button>
+        <button class="bottom-button" (click)="deleteCustomer()">Ügyfél törlése</button>
+        <button class="bottom-button" (click)="activateCustomer()">Ügyfél aktiválása</button>
+      </div>
+    </div>
+  </div>
+  

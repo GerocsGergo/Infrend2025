@@ -16,18 +16,18 @@ export class MainMenuComponent {
   }
 
   openAllCustomer(){
-    this.router.navigate(['list-all-costumer']);
+    this.router.navigate(['list-all-customer']);
   }
 
-  openFindCostumer(){
-    this.router.navigate(['find-costumer']);
+  openFindCustomer(){
+    this.router.navigate(['find-customer']);
   }
 
-  openModifyCostumer(){
-    this.router.navigate(['modify-costumer']);
+  openModifyCustomer(){
+    this.router.navigate(['modify-customer']);
   }
 
-  openDeleteCostumer(){
-    this.router.navigate(['delete-costumer']);
+  openDeleteCustomer(){
+    this.router.navigate(['delete-customer']);
   }
 }

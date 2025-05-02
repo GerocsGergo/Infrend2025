@@ -6,20 +6,20 @@ Belépési menü:
 
 Főmenü: 
 
-    -egymás mellett és alatt oszlopokba rendezve a gombok / fent menü sávba rendezve a gombok / bal oldali menübe rendezve a gombok
-        -3 fajta (esetleg 3 hasáb): ügyefelekkel kapcsolatos gombok, kazetákkal, egyéb
-    -legfent valami kék szöveg/háttérkép az alkalmazás névvel stb
+    !!!!!!!!-egymás mellett és alatt oszlopokba rendezve a gombok / fent menü sávba rendezve a gombok / bal oldali menübe rendezve a gombok
+    !!!!!!!!    -3 fajta (esetleg 3 hasáb): ügyefelekkel kapcsolatos gombok, kazetákkal, egyéb
+    !!!!!!!!-legfent valami kék szöveg/háttérkép az alkalmazás névvel stb
 
-        Kis menük száma: 
-            összes ügyfél lekérdezése,
-            ügyfél keresése, (ezután megnyitja az ügyfél adatlapját)
-            ügyfél módosítása,
-            ügyfél törlése,
+        Kis menük száma:  
+            összes ügyfél lekérdezése,   endpoint=! frontend=.
+            ügyfél keresése, (ezután megnyitja az ügyfél adatlapját) endpoint=! frontend=.
+            ügyfél módosítása, endpoint=! frontend=.
+            ügyfél törlése, endpoint=! frontend=.
 
             kazetták, dvdk lekérdezése,
             kikölcsönzöttek lekérdezése idő megadásával (pl 1 nap, ez megadható)                        ????ezt nem teljesen értem
-	    kazetta/dvd törlése
-	    kazetta/dvd hozzáadása
+	    kazetta/dvd törlése  ??
+	    kazetta/dvd hozzáadása ??
 
             kölcsönzés rögzítése,
             kölcsönzés felszabadítása, (megnyitja a kazetta/dvd adatlapját és ott lehet)
@@ -38,13 +38,14 @@ Mi kell:
         státusz (aktiv, törölt),
 
     Ügyfelek keresése:
-        név,
+        név, //lehet ugyanaz a nevuk
         személyiszám,
         azonosító alapján
     
     Ügyfelek módosítása:
-    Ügyfelek törlése:
+    Ügyfelek törlése: 
         -státusz váltás nem sima törlés!!!!!!
+        -törlés és újra aktiválás gomb
 
 
     Kazetták, dvd-k nyilvántartása:
@@ -58,5 +59,7 @@ Mi kell:
 
 
 
+TODO kikolcsonozte-t atirni number és azonosito alapján legyen
 
+TODO formatokat megcsinalni validatorba es frontenden is!
 

@@ -1,0 +1,133 @@
+import { Component, OnInit, inject } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CustomerDTO } from '../../../../models';
+import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
+import { CustomerService } from '../../services/customer.service';
+
+type UpdatableCustomerField = 'nev' | 'telefonszam' | 'szemelyiszam' | 'lakcim';
+
+
+@Component({
+  selector: 'app-customer-datasheet',
+  imports: [NgIf, FormsModule],
+  templateUrl: './customer-datasheet.component.html',
+  styleUrl: './customer-datasheet.component.css'
+})
+export class CustomerDatasheetComponent implements OnInit{
+
+  activatedroute = inject(ActivatedRoute);
+  router = inject(Router);
+  customerService = inject(CustomerService);
+
+  customer: CustomerDTO = {
+    azonosito: 0,
+    nev: '',
+    telefonszam: '',
+    szemelyiszam: '',
+    lakcim: '',
+    statusz: 'aktiv',
+  };
+
+  azonosito: number = 0;
+
+  showUpdatePopup = false;
+  fieldToUpdate: string = '';
+  newValue: string = '';
+
+
+  
+
+
+  ngOnInit() {
+    this.azonosito = Number(this.activatedroute.snapshot.paramMap.get('azonosito'));
+    console.log(this.azonosito);
+
+    this.customerService.openCustomer(this.azonosito).subscribe({
+      next: (customer) =>this.customer = customer,
+      error: (err) => {
+        console.error('Failed to load customer:', err);
+      }
+    });
+  }
+
+  openMainMenu(){
+    this.router.navigate(['main-menu']);
+  }
+
+  deleteCustomer(){
+    this.customerService.deleteCustomer(this.azonosito).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.customer.statusz = 'torolt';
+      },
+      error: (err) => {
+        console.error('Failed to load customer:', err);
+      }
+    });
+  }
+
+  activateCustomer(){
+    this.customerService.activateCustomer(this.azonosito).subscribe({
+      next: (response) => {
+        console.log(response)
+        this.customer.statusz = 'aktiv';
+      },
+      error: (err) => {
+        console.error('Failed to load customer:', err);
+      }
+    });
+  }
+
+  openUpdatePopup(field: UpdatableCustomerField) {
+    this.fieldToUpdate = field;
+    this.newValue = this.customer[field];
+    this.showUpdatePopup = true;
+  }
+
+  closeUpdatePopup() {
+    this.showUpdatePopup = false;
+    this.fieldToUpdate = '';
+    this.newValue = '';
+  }
+
+  updateCustomer() {
+    const updatePayload: any = {};
+    updatePayload[this.fieldToUpdate] = this.newValue;
+
+    this.customerService.modifyCustomer(
+      this.azonosito,
+      updatePayload.nev,
+      updatePayload.telefonszam,
+      updatePayload.szemelyiszam,
+      updatePayload.lakcim
+    ).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.customer = { ...this.customer, ...updatePayload };
+        this.closeUpdatePopup();
+      },
+      error: (err) => {
+        console.error('Failed to update customer:', err);
+      }
+    });
+  }
+
+
+  //ez azert kell h szepen irja ki
+  getFormattedField(field: string): string {
+    switch(field) {
+      case 'nev':
+        return `Név:`;
+      case 'telefonszam':
+        return `Telefonszám`;
+      case 'szemelyiszam':
+        return `Személyiszám`;
+      case 'lakcim':
+        return `Lakcím`;
+      default:
+        return '';
+    }
+  }
+
+}

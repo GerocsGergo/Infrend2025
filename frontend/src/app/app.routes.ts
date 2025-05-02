@@ -2,10 +2,11 @@ import { Routes } from '@angular/router';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
 import { TestMenuComponent } from './components/test-menu/test-menu.component';
-import { ListAllCostumerComponent} from './components/list-all-costumer/list-all-costumer.component';
-import { FindCostumerComponent } from './components/find-costumer/find-costumer.component';
-import { ModifyCostumerComponent } from './components/modify-costumer/modify-costumer.component';
-import { DeleteCostumerComponent } from './components/delete-costumer/delete-costumer.component';
+import { ListAllCustomerComponent} from './components/list-all-customer/list-all-customer.component';
+import { FindCustomerComponent } from './components/find-customer/find-customer.component';
+import { ModifyCustomerComponent } from './components/modify-customer/modify-customer.component';
+import { DeleteCustomerComponent } from './components/delete-customer/delete-customer.component';
+import { CustomerDatasheetComponent } from './components/customer-datasheet/customer-datasheet.component';
 
 
 export const routes: Routes = [
@@ -15,12 +16,16 @@ export const routes: Routes = [
 
     { path: 'test-menu', component: TestMenuComponent },
 
-    { path: 'list-all-costumer', component: ListAllCostumerComponent },
+    { path: 'list-all-customer', component: ListAllCustomerComponent },
 
-    { path: 'find-costumer', component: FindCostumerComponent },
+    { path: 'customer-datasheet/:azonosito', component: CustomerDatasheetComponent},
 
-    { path: 'modify-costumer', component: ModifyCostumerComponent },
+    { path: 'find-customer/:azonosito', component: FindCustomerComponent },
 
-    { path: 'delete-costumer', component: DeleteCostumerComponent }
+    { path: 'modify-customer/:azonosito', component: ModifyCustomerComponent },
+
+    { path: 'delete-customer/:azonosito', component: DeleteCustomerComponent }
+
+
 
 ];

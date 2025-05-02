@@ -1,0 +1,133 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .page {
+    padding: 20px;
+  }
+  
+  .title-container {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .title {
+    font-size: 48px;
+    color: #333;
+    font-weight: bold;
+  }
+  
+
+  .customer-title {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .customer-table th,
+  .customer-table td {
+    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .customer-table th {
+    background-color: #007BFF;
+    color: white;
+  }
+  
+  .customer-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .customer-table tbody th {
+    background-color: #e0f0ff;
+    color: #333;
+    font-weight: normal;
+    text-align: left;
+  }
+
+  .update-button {
+    padding: 6px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .update-button:hover {
+    background-color: #218838;
+  }
+  
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .button-container button {
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    width: 180px;
+  }
+  
+  .bottom-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+  }
+  
+  .bottom-button:hover {
+    background-color: #0056b3;
+  }
+
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .popup {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 300px;
+  }
+  
+  .popup-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .popup-buttons button {
+    padding: 8px 16px;
+  }
+  

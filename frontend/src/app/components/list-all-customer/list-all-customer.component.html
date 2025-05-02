@@ -1,0 +1,40 @@
+<div class="page">
+  <div class="title-container">
+    <h1 class="title">VideoWarehouse</h1>
+  </div>
+
+  <h2>Ügyfelek Listája</h2>
+
+  <div class="main-menu-island">
+    <table class="customer-table">
+      <thead>
+        <tr>
+          <th>Azonosító</th>
+          <th>Név</th>
+          <th>Telefonszám</th>
+          <th>Személyiszám</th>
+          <th>Lakcím</th>
+          <th>Státusz</th>
+          <th>Adatlap</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(customer of customers; track customer.azonosito) {
+        <tr>
+          <td>{{ customer.azonosito }}</td>
+          <td>{{ customer.nev }}</td>
+          <td>{{ customer.telefonszam }}</td>
+          <td>{{ customer.szemelyiszam }}</td>
+          <td>{{ customer.lakcim }}</td>
+          <td>{{ customer.statusz }}</td>
+          <td>
+            <button (click)="openCustomerProfile(customer.azonosito)">Adatlap</button>
+          </td>
+        </tr>
+      }
+      </tbody>
+    </table>
+
+    <button class="back-button" (click)="openMainMenu()">Vissza a főmenübe</button>
+  </div>
+</div>
