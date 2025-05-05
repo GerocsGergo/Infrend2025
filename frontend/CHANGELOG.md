@@ -20,9 +20,15 @@
 - Customer datasheet
 - User is able to modify and delete Customer
 
- ## [v0.3.0] - 2025-05-05
+ ## [v0.2.1] - 2025-05-05
 ### WIP Version
 - Errorhandling on customer delete/modify
 - Unique telefonszam and szemelyiszam
+
+ ## [v0.3.0] - 2025-05-05
+### WIP Version
+- Can register User
+- Can find user by nev, szemelyiszam, azonosito  
+- TODO datasheet back button should go back to keresés not mainmenu
 
 

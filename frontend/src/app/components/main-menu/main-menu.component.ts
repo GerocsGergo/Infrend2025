@@ -30,4 +30,8 @@ export class MainMenuComponent {
   openDeleteCustomer(){
     this.router.navigate(['delete-customer']);
   }
+
+  openCreateCustomer(){
+    this.router.navigate(['create-customer']);
+  }
 }

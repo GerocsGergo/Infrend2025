@@ -4,9 +4,6 @@ import { CustomerDTO } from '../../../../models';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { CustomerService } from '../../services/customer.service';
-import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
 
 
 type UpdatableCustomerField = 'nev' | 'telefonszam' | 'szemelyiszam' | 'lakcim';
@@ -57,7 +54,7 @@ export class CustomerDatasheetComponent implements OnInit{
     });
   }
 
-  openMainMenu(){
+  openListMenu(){
     this.router.navigate(['list-all-customer']);
   }
 

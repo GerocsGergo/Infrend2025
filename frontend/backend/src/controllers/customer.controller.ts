@@ -27,25 +27,84 @@ export class CustomerController{
         };
 
         createCustomer = async (req, res) => {
-         
-        };
+          try {
+              // Extract fields from the request body
+              const { nev, telefonszam, szemelyiszam, lakcim } = req.body;
+      
+              // Validate required fields
+              if (!nev || !telefonszam || !szemelyiszam || !lakcim) {
+                  return res.status(400).json({ message: 'Minden mező kitöltése kötelező!' });
+              }
+      
+              // Validate name
+              if (!isValidNev(nev)) {
+                  return res.status(400).json({ message: 'Érvénytelen név.' });
+              }
+      
+              // Validate phone number
+              if (!isValidTelefonszam(telefonszam)) {
+                  return res.status(400).json({ message: 'Érvénytelen telefonszám.' });
+              }
+      
+              // Check if the phone number already exists
+              const existingTelefonszam = await this.customerTable.findOneBy({ telefonszam: telefonszam });
+              if (existingTelefonszam) {
+                  return res.status(400).json({ message: 'Ez a telefonszám már használatban van.' });
+              }
+      
+              // Validate personal ID
+              if (!isValidSzemelyiszam(szemelyiszam)) {
+                  return res.status(400).json({ message: 'Érvénytelen személyiszám.' });
+              }
+      
+              // Check if the personal ID already exists
+              const existingSzemelyiszam = await this.customerTable.findOneBy({ szemelyiszam: szemelyiszam });
+              if (existingSzemelyiszam) {
+                  return res.status(400).json({ message: 'Ez a személyiszám már használatban van.' });
+              }
+      
+              // Validate address
+              if (!isValidLakcim(lakcim)) {
+                  return res.status(400).json({ message: 'Érvénytelen lakcím.' });
+              }
+      
+              // Create the new customer object
+              const newCustomer = this.customerTable.create({
+                  nev,
+                  telefonszam,
+                  szemelyiszam,
+                  lakcim,
+              });
+      
+              // Save the new customer to the database
+              await this.customerTable.save(newCustomer);
+      
+              // Send a success response
+              res.json({ message: 'Új ügyfél sikeresen hozzáadva!', customer: newCustomer });
+      
+          } catch (err) {
+              // Handle any errors that occur
+              this.handleError(res, err);
+          }
+      };
+      
 
         findCustomers = async (req, res) => {
             try {
               const { azonosito, szemelyiszam, nev } = req.query;
               let customer = null;
           
-              if (azonosito) {
+              if (azonosito && azonosito != 0) {
                 if (!isValidAzonosito(azonosito)) {
                   return res.status(400).json({ message: 'Nem érvényes azonosito.' });
                 }
-                customer = await this.customerTable.findOneBy({ azonosito: Number(azonosito) });
+                customer = await this.customerTable.find({where: {azonosito: Number(azonosito)} });
               }
               else if (szemelyiszam) {
                 if (!isValidSzemelyiszam(szemelyiszam)) {
                   return res.status(400).json({ message: 'Nem érvényes személyiszám.' });
                 }
-                customer = await this.customerTable.findOneBy({ szemelyiszam });
+                customer = await this.customerTable.find({where: {szemelyiszam} });
               }
               else if (nev) {
                 if (!isValidNev(nev)) {

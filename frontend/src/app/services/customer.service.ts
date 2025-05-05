@@ -52,6 +52,15 @@ export class CustomerService {
       return this.http.get<CustomerDTO>('/api/openCustomer/' + azonosito);
     }
 
+    createCustomer(nev: string, telefonszam: string, szemelyiszam: string, lakcim: string){
+      const body: any = {};
 
+      if (nev !== undefined) body.nev = nev;
+      if (telefonszam !== undefined) body.telefonszam = telefonszam;
+      if (szemelyiszam !== undefined) body.szemelyiszam = szemelyiszam;
+      if (lakcim !== undefined) body.lakcim = lakcim;
+
+      return this.http.post('/api/createCustomer/', body);
+    }
 
 }

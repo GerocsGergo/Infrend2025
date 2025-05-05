@@ -7,6 +7,7 @@ import { FindCustomerComponent } from './components/find-customer/find-customer.
 import { ModifyCustomerComponent } from './components/modify-customer/modify-customer.component';
 import { DeleteCustomerComponent } from './components/delete-customer/delete-customer.component';
 import { CustomerDatasheetComponent } from './components/customer-datasheet/customer-datasheet.component';
+import { CreateCustomerComponent } from './components/create-customer/create-customer.component';
 
 
 export const routes: Routes = [
@@ -20,11 +21,13 @@ export const routes: Routes = [
 
     { path: 'customer-datasheet/:azonosito', component: CustomerDatasheetComponent},
 
-    { path: 'find-customer/:azonosito', component: FindCustomerComponent },
+    { path: 'find-customer', component: FindCustomerComponent },
 
     { path: 'modify-customer/:azonosito', component: ModifyCustomerComponent },
 
-    { path: 'delete-customer/:azonosito', component: DeleteCustomerComponent }
+    { path: 'delete-customer/:azonosito', component: DeleteCustomerComponent },
+
+    { path: 'create-customer', component: CreateCustomerComponent}
 
 
 
