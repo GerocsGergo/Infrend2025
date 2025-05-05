@@ -16,6 +16,9 @@
             <button (click)="updateCustomer()">Mentés</button>
             <button (click)="closeUpdatePopup()">Mégse</button>
           </div>
+          <div *ngIf="errorMessage" class="error-message">
+            <p>{{ errorMessage }}</p>
+          </div>
         </div>
       </div>
       
@@ -64,10 +67,16 @@
   
       <!-- Action Buttons (Two Buttons) -->
       <div class="button-container">
-        <button class="bottom-button" (click)="openMainMenu()">Vissza a főmenübe</button>
+        <button class="bottom-button" (click)="openMainMenu()">Vissza a listához</button>
         <button class="bottom-button" (click)="deleteCustomer()">Ügyfél törlése</button>
         <button class="bottom-button" (click)="activateCustomer()">Ügyfél aktiválása</button>
       </div>
     </div>
   </div>
+
+  <div *ngIf="successMessage" class="success-message">
+    <p>{{ successMessage }}</p>
+  </div>
+
+
   

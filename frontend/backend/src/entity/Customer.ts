@@ -10,15 +10,15 @@ export class Customer implements CustomerDTO{
     @Column()
     nev: string;
     
-    @Column()
+    @Column({ type: 'varchar', length: 30, unique: true })
     telefonszam: string;
 
-    @Column()
+    @Column({ type: 'varchar', length: 30, unique: true })
     szemelyiszam: string;
 
     @Column()
     lakcim: string;
 
-    @Column()
+    @Column({ type: 'varchar', length: 30, default: 'aktiv'})
     statusz: string;
 }

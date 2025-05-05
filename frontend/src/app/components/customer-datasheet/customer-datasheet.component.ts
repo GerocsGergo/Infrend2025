@@ -4,6 +4,10 @@ import { CustomerDTO } from '../../../../models';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { CustomerService } from '../../services/customer.service';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 
 type UpdatableCustomerField = 'nev' | 'telefonszam' | 'szemelyiszam' | 'lakcim';
 
@@ -35,7 +39,8 @@ export class CustomerDatasheetComponent implements OnInit{
   fieldToUpdate: string = '';
   newValue: string = '';
 
-
+  errorMessage: string = '';
+  successMessage: string = '';
   
 
 
@@ -47,12 +52,13 @@ export class CustomerDatasheetComponent implements OnInit{
       next: (customer) =>this.customer = customer,
       error: (err) => {
         console.error('Failed to load customer:', err);
+        this.errorMessage = err.error.message;
       }
     });
   }
 
   openMainMenu(){
-    this.router.navigate(['main-menu']);
+    this.router.navigate(['list-all-customer']);
   }
 
   deleteCustomer(){
@@ -63,6 +69,7 @@ export class CustomerDatasheetComponent implements OnInit{
       },
       error: (err) => {
         console.error('Failed to load customer:', err);
+        this.errorMessage = err.error.message;
       }
     });
   }
@@ -75,6 +82,7 @@ export class CustomerDatasheetComponent implements OnInit{
       },
       error: (err) => {
         console.error('Failed to load customer:', err);
+        this.errorMessage = err.error.message;
       }
     });
   }
@@ -106,9 +114,12 @@ export class CustomerDatasheetComponent implements OnInit{
         console.log(response);
         this.customer = { ...this.customer, ...updatePayload };
         this.closeUpdatePopup();
+        this.errorMessage = '';
+        this.successMessage = response.message;
       },
       error: (err) => {
         console.error('Failed to update customer:', err);
+        this.errorMessage = err.error.message;
       }
     });
   }

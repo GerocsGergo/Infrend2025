@@ -20,6 +20,7 @@ router.put('/modifyCustomer/:azonosito', customerController.modifyCustomer);
 router.put('/deleteCustomer/:azonosito', customerController.deleteCustomer);
 router.put('/activateCustomer/:azonosito', customerController.activateCustomer);
 router.get('/openCustomer/:azonosito', customerController.openCustomer);
+router.post('/createCustomer', customerController.createCustomer);
 
 
 

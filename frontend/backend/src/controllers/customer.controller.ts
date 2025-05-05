@@ -16,7 +16,7 @@ export class CustomerController{
                 const customers = await this.customerTable.find();
 
                 if (!customers) {
-                    res.status(404).json({ message: 'The data does not exist.' });
+                    res.status(404).json({ message: 'Hiba történt az adatok lekérésében' });
                     return;
                 }
 
@@ -26,6 +26,10 @@ export class CustomerController{
             }
         };
 
+        createCustomer = async (req, res) => {
+         
+        };
+
         findCustomers = async (req, res) => {
             try {
               const { azonosito, szemelyiszam, nev } = req.query;
@@ -33,28 +37,28 @@ export class CustomerController{
           
               if (azonosito) {
                 if (!isValidAzonosito(azonosito)) {
-                  return res.status(400).json({ message: 'Invalid azonosito.' });
+                  return res.status(400).json({ message: 'Nem érvényes azonosito.' });
                 }
                 customer = await this.customerTable.findOneBy({ azonosito: Number(azonosito) });
               }
               else if (szemelyiszam) {
                 if (!isValidSzemelyiszam(szemelyiszam)) {
-                  return res.status(400).json({ message: 'Invalid személyiszám.' });
+                  return res.status(400).json({ message: 'Nem érvényes személyiszám.' });
                 }
                 customer = await this.customerTable.findOneBy({ szemelyiszam });
               }
               else if (nev) {
                 if (!isValidNev(nev)) {
-                  return res.status(400).json({ message: 'Invalid név.' });
+                  return res.status(400).json({ message: 'Nem érvényes név.' });
                 }
                 customer = await this.customerTable.find({ where: { nev } });
               }
               else {
-                return res.status(400).json({ message: 'No search parameter provided.' });
+                return res.status(400).json({ message: 'Nincs megadva keresési feltétel' });
               }
           
               if (!customer || (Array.isArray(customer) && customer.length === 0)) {
-                return res.status(404).json({ message: 'Customer not found.' });
+                return res.status(404).json({ message: 'Nincs ilyen ügyfél' });
               }
           
               res.json(customer);
@@ -66,16 +70,16 @@ export class CustomerController{
           modifyCustomer = async (req, res) => {
             try {
               const azonosito = req.params['azonosito'];
-          
+              
               // Check if azonosito is valid
               if (!isValidAzonosito(azonosito)) {
-                return res.status(400).json({ message: 'Invalid azonosito.' });
+                return res.status(400).json({ message: 'Érvénytelen azonositó.' });
               }
           
               const customer = await this.customerTable.findOneBy({ azonosito: Number(azonosito) });
           
               if (!customer) {
-                return res.status(404).json({ message: 'Customer not found.' });
+                return res.status(404).json({ message: 'Nincs ilyen ügyfél.' });
               }
           
               const { nev, telefonszam, szemelyiszam, lakcim } = req.body;
@@ -83,35 +87,49 @@ export class CustomerController{
               // Validate and update each field if provided
               if (nev !== undefined) {
                 if (!isValidNev(nev)) {
-                  return res.status(400).json({ message: 'Invalid név.' });
+                  return res.status(400).json({ message: 'Érvénytelen név.' });
                 }
                 customer.nev = nev;
               }
           
               if (telefonszam !== undefined) {
                 if (!isValidTelefonszam(telefonszam)) {
-                  return res.status(400).json({ message: 'Invalid telefonszám.' });
+                  return res.status(400).json({ message: 'Érvénytelen telefonszám.' });
                 }
+
+                const existingTelefonszam = await this.customerTable.findOneBy({ telefonszam: telefonszam });
+                if (existingTelefonszam != null) {
+                  return res.status(400).json({ message: 'Ez a telefonszám már használatban van.' });
+                }
+
                 customer.telefonszam = telefonszam;
               }
-          
+              
+        
               if (szemelyiszam !== undefined) {
                 if (!isValidSzemelyiszam(szemelyiszam)) {
-                  return res.status(400).json({ message: 'Invalid személyiszám.' });
+                  return res.status(400).json({ message: 'Érvénytelen személyiszám.' });
                 }
+
+                const existingSzemelyiszam = await this.customerTable.findOneBy({ szemelyiszam: szemelyiszam });
+                if (existingSzemelyiszam != null) {
+                  return res.status(400).json({ message: 'Ez a személyiszám már használatban van.' });
+                }
+
                 customer.szemelyiszam = szemelyiszam;
               }
+             
           
               if (lakcim !== undefined) {
                 if (!isValidLakcim(lakcim)) {
-                  return res.status(400).json({ message: 'Invalid lakcím.' });
+                  return res.status(400).json({ message: 'Érvénytelen lakcím.' });
                 }
                 customer.lakcim = lakcim;
               }
           
               await this.customerTable.save(customer);
           
-              res.json({ message: 'Customer updated successfully.', customer: customer });
+              res.json({ message: 'Ügyfél adatati sikeresen frissítve!', customer: customer });
           
             } catch (err) {
               this.handleError(res, err);
@@ -123,19 +141,19 @@ export class CustomerController{
                   const azonosito = req.params['azonosito'];
               
                   if (!isValidAzonosito(azonosito)) {
-                    return res.status(400).json({ message: 'Invalid azonosito.' });
+                    return res.status(400).json({ message: 'Érvénytelen azonositó.' });
                   }
               
                   const customer = await this.customerTable.findOneBy({ azonosito: Number(azonosito) });
               
                   if (!customer) {
-                    return res.status(404).json({ message: 'Customer not found.' });
+                    return res.status(404).json({ message: 'Nincs ilyen ügyfél.' });
                   }
               
                   customer.statusz = 'torolt';
                   await this.customerTable.save(customer);
               
-                  res.json({ message: 'Customer marked as deleted (torolt).', customer });
+                  res.json({ message: 'Ügyfél státusza sikeresen módosítva: Törölt', customer });
                 } catch (err) {
                   this.handleError(res, err);
                 }
@@ -147,19 +165,19 @@ export class CustomerController{
                 const azonosito = req.params['azonosito'];
             
                 if (!isValidAzonosito(azonosito)) {
-                  return res.status(400).json({ message: 'Invalid azonosito.' });
+                  return res.status(400).json({ message: 'Érvénytelen azonositó.' });
                 }
             
                 const customer = await this.customerTable.findOneBy({ azonosito: Number(azonosito) });
             
                 if (!customer) {
-                  return res.status(404).json({ message: 'Customer not found.' });
+                  return res.status(404).json({ message: 'Nincs ilyen ügyfél.' });
                 }
         
                 customer.statusz = 'aktiv';
                 await this.customerTable.save(customer);
             
-                res.json({ message: 'Ügyfél új státusza: törölt.', customer });
+                res.json({ message: 'Ügyfél státusza sikeresen módosítva: Aktív', customer });
               } catch (err) {
                 this.handleError(res, err);
               }
@@ -170,13 +188,13 @@ export class CustomerController{
             const azonosito = req.params['azonosito'];
         
             if (!isValidAzonosito(azonosito)) {
-              return res.status(400).json({ message: 'Invalid azonosito.' });
+              return res.status(400).json({ message: 'Érvénytelen azonositó.' });
             }
 
             const customer = await this.customerTable.findOneBy({ azonosito: Number(azonosito) });
         
             if (!customer) {
-              return res.status(404).json({ message: 'Customer not found.' });
+              return res.status(404).json({ message: 'Nincs ilyen ügyfél.' });
             }
         
             res.json(customer);
@@ -186,11 +204,12 @@ export class CustomerController{
           }
         };
 
-        handleError = (res: Response, err: any, status = 500, message = 'Unknown server error.') => {
+        handleError = (res: Response, err: any, status = 500, message = 'Ismeretlen szerver hiba.') => {
             if (err) {
                 console.error(err);
             }
             res.status(status).json({ message });
         };
+
 
 }
