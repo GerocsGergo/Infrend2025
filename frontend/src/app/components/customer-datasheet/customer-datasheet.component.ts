@@ -39,11 +39,10 @@ export class CustomerDatasheetComponent implements OnInit{
   errorMessage: string = '';
   successMessage: string = '';
   
-
+  backButtonCode: number = 99; //0 = find-customer menu, 1 = list-all-customer menu
 
   ngOnInit() {
     this.azonosito = Number(this.activatedroute.snapshot.paramMap.get('azonosito'));
-    console.log(this.azonosito);
 
     this.customerService.openCustomer(this.azonosito).subscribe({
       next: (customer) =>this.customer = customer,
@@ -52,10 +51,20 @@ export class CustomerDatasheetComponent implements OnInit{
         this.errorMessage = err.error.message;
       }
     });
+
+    this.activatedroute.queryParamMap.subscribe(queryParams => {
+      this.backButtonCode = Number(queryParams.get('backButtonCode'));
+      console.log(this.backButtonCode);
+    });
   }
 
-  openListMenu(){
-    this.router.navigate(['list-all-customer']);
+  openBackMenu(){
+    if (this.backButtonCode === 0) {
+      this.router.navigate(['find-customer']);
+    } else if (this.backButtonCode === 1) { 
+      this.router.navigate(['list-all-customer']);
+    }
+
   }
 
   deleteCustomer(){

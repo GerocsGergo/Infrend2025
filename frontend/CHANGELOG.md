@@ -29,6 +29,9 @@
 ### WIP Version
 - Can register User
 - Can find user by nev, szemelyiszam, azonosito  
-- TODO datasheet back button should go back to keresés not mainmenu
 
-
+ ## [v0.3.1] - 2025-05-05
+### WIP Version
+- Can register User
+- Can find user by nev, szemelyiszam, azonosito  
+- Repaired navigation between find, main, list-all menu

@@ -26,7 +26,9 @@ export class FindCustomerComponent {
   customers: CustomerDTO[] = [];
 
   openCustomerProfile(azonosito: number){
-    this.router.navigate(['customer-datasheet', azonosito]);
+    const backButtonCode = 0 //0 = find-customer menu, 1 = list-all-customer menu
+    console.log(backButtonCode);
+    this.router.navigate(['customer-datasheet', azonosito], { queryParams: { backButtonCode } });
   }
 
   findCustomer() {
