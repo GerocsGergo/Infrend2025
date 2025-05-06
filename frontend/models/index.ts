@@ -3,12 +3,6 @@ export interface VersionDTO {
     version: string;
 }
 
-export interface UserDTO { //FOR TEH TEST 
-    id: number;
-    nev: string;
-    eletkor: number;
-}
-
 export interface CustomerDTO {
     azonosito: number;
     nev: string;
@@ -18,12 +12,18 @@ export interface CustomerDTO {
     statusz: string;
 }
 
-export interface ProductDTO {
+export interface MediaDTO {
     sorszam: number;
     cim: string;
     beszerzes_datuma: Date;
-    statusz: string;
-    kolcsonozte: string;
-    kolcsonzes_ideje: Date;
     tipus: string;
+    statusz: string;
 }
+
+export interface BorrowingDTO {
+    id: number;
+    sorszam: number;
+    azonosito: number;
+    kolcsonzes_datuma: Date;
+    visszahozas_datuma: Date | null;
+  }

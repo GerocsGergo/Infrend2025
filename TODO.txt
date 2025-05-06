@@ -11,10 +11,8 @@ Főmenü:
     !!!!!!!!-legfent valami kék szöveg/háttérkép az alkalmazás névvel stb
 
         Kis menük száma:  
-            összes ügyfél lekérdezése,   endpoint=! frontend=.
-            ügyfél keresése, (ezután megnyitja az ügyfél adatlapját) endpoint=! frontend=.
-            ügyfél módosítása, endpoint=! frontend=.
-            ügyfél törlése, endpoint=! frontend=.
+            összes ügyfél lekérdezése,
+            ügyfél keresése, (ezután megnyitja az ügyfél adatlapját)
 
             kazetták, dvdk lekérdezése,
             kikölcsönzöttek lekérdezése idő megadásával (pl 1 nap, ez megadható)                        ????ezt nem teljesen értem
@@ -28,38 +26,26 @@ Főmenü:
 
 
 
-Mi kell:
-    Ügyfelek nyilvántartása:
-        azonosító
-        név, 
-        telefonszám, 
-        személyiszám, 
-        lakcím, 
-        státusz (aktiv, törölt),
+CREATE TABLE media (
+    sorszam INT PRIMARY KEY AUTO_INCREMENT,
+    cim VARCHAR(255) NOT NULL,
+    beszerzes_datuma DATE NOT NULL,
+    tipus ENUM('kazetta', 'DVD') NOT NULL,
+    statusz ENUM('szabad', 'kikölcsönzött', 'selejtezett') DEFAULT 'szabad'
+);
 
-    Ügyfelek keresése:
-        név, //lehet ugyanaz a nevuk
-        személyiszám,
-        azonosító alapján
-    
-    Ügyfelek módosítása:
-    Ügyfelek törlése: 
-        -státusz váltás nem sima törlés!!!!!!
-        -törlés és újra aktiválás gomb
-
-
-    Kazetták, dvd-k nyilvántartása:
-        azonosító,
-        cím,
-        beszerzés dátuma,
-        sorszám,                                ???? ez lenne az azonosító?
-        státusz (szabad, kikölcsönzött, selejtezett)
-        kikölcsönözte ki ha ki van,             ???? igy kene sztem
-        kölcsönzés ideje,                       ???? igy kene sztem
+CREATE TABLE borrowings (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    sorszam INT NOT NULL,
+    azonosito INT NOT NULL,
+    kolcsonzes_datuma DATE NOT NULL,
+    visszahozas_datuma DATE DEFAULT NULL,
+    FOREIGN KEY (sorszam) REFERENCES media(sorszam),
+    FOREIGN KEY (azonosito) REFERENCES customer(azonosito)
+);
 
 
+TODO kazetta tábla hogy nézzen ki?
+TODO listázást megcsinálni
 
-TODO kikolcsonozte-t atirni number és azonosito alapján legyen
-
-TODO formatokat megcsinalni validatorba es frontenden is!
 

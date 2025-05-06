@@ -1,9 +1,9 @@
 import express from 'express';
 import {VersionController} from './controllers/version.controller'
 import { Router } from 'express';
-import { TestController } from './controllers/test.controller';
 import { AppDataSource } from './data-source';
 import { CustomerController } from './controllers/customer.controller';
+import { MediaController } from './controllers/media.controller';
 
 const router = Router();
 
@@ -24,12 +24,12 @@ router.post('/createCustomer', customerController.createCustomer);
 
 
 
-//Product
+//Media
+const mediaController = new MediaController(AppDataSource);
+router.get('/getAllMedia', mediaController.getAllMedia);
+router.post('/createMedia', mediaController.createMedia);
+router.put('/deleteMedia/:azonosito', mediaController.deleteMedia);
+router.put('/modifyMedia/:azonosito', mediaController.modifyMedia);
 
-//FOR the tests
-const testController = new TestController(AppDataSource);
-
-router.get('/getOneUser/:id', testController.getOneUser);
-router.get('/getAllUser', testController.getAllUser);
 
 export { router };

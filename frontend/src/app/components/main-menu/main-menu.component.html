@@ -15,8 +15,8 @@
   
       <div class="menu-column">
         <h3>Kazetták, dvdk</h3>
-        <button class="menu-button">Kazetták, dvdk lekérdezése</button>
-        <button class="menu-button">kikölcsönzöttek lekérdezése idő megadásával</button>      <!-- lehet átkéne nevezni -->
+        <button class="menu-button" (click)="openAllMedia()">Kazetták, dvdk lekérdezése</button>
+        <button class="menu-button" (click)="openCreateMedia()">Kazetták, dvdk hozzáadása</button>
       </div>
   
 
@@ -24,7 +24,7 @@
         <h3>Kölcsönzés</h3>
         <button class="menu-button">Kölcsönzés rögzítése</button>
         <button class="menu-button">Kölcsönzés felszabadítása</button>
-        <button class="menu-button" (click)="openTest()" >TESZT</button>
+        <button class="menu-button">kikölcsönzöttek lekérdezése idő megadásával</button> 
       </div>
     </div>
   </div>

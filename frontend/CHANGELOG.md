@@ -35,3 +35,8 @@
 - Can register User
 - Can find user by nev, szemelyiszam, azonosito  
 - Repaired navigation between find, main, list-all menu
+
+ ## [v0.4.0] - 2025-05-06
+### WIP Version
+- Can list all medias
+- Worked on media and borrowings tables

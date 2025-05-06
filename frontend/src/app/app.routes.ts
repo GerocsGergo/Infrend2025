@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { MainMenuComponent } from './components/main-menu/main-menu.component';
-import { TestMenuComponent } from './components/test-menu/test-menu.component';
 import { ListAllCustomerComponent} from './components/list-all-customer/list-all-customer.component';
 import { FindCustomerComponent } from './components/find-customer/find-customer.component';
-import { ModifyCustomerComponent } from './components/modify-customer/modify-customer.component';
-import { DeleteCustomerComponent } from './components/delete-customer/delete-customer.component';
 import { CustomerDatasheetComponent } from './components/customer-datasheet/customer-datasheet.component';
 import { CreateCustomerComponent } from './components/create-customer/create-customer.component';
+import { ListAllMediaComponent } from './components/list-all-media/list-all-media.component';
+import { MediaDatasheetComponent } from './components/media-datasheet/media-datasheet.component';
+import { CreateMediaComponent } from './components/create-media/create-media.component';
 
 
 export const routes: Routes = [
@@ -15,7 +15,7 @@ export const routes: Routes = [
 
     { path: 'main-menu', component: MainMenuComponent },
 
-    { path: 'test-menu', component: TestMenuComponent },
+    //Customer
 
     { path: 'list-all-customer', component: ListAllCustomerComponent },
 
@@ -23,12 +23,14 @@ export const routes: Routes = [
 
     { path: 'find-customer', component: FindCustomerComponent },
 
-    { path: 'modify-customer/:azonosito', component: ModifyCustomerComponent },
+    { path: 'create-customer', component: CreateCustomerComponent},
 
-    { path: 'delete-customer/:azonosito', component: DeleteCustomerComponent },
+    //Media
 
-    { path: 'create-customer', component: CreateCustomerComponent}
+    { path: 'list-all-media', component: ListAllMediaComponent},
 
+    { path: 'media-datasheet', component: MediaDatasheetComponent},
 
+    { path: 'create-media', component: CreateMediaComponent}
 
 ];

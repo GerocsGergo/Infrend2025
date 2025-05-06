@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModifyCustomerComponent } from './modify-customer.component';
+import { ListAllMediaComponent } from './list-all-media.component';
 
-describe('ModifyCustomerComponent', () => {
-  let component: ModifyCustomerComponent;
-  let fixture: ComponentFixture<ModifyCustomerComponent>;
+describe('ListAllMediaComponent', () => {
+  let component: ListAllMediaComponent;
+  let fixture: ComponentFixture<ListAllMediaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModifyCustomerComponent]
+      imports: [ListAllMediaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModifyCustomerComponent);
+    fixture = TestBed.createComponent(ListAllMediaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

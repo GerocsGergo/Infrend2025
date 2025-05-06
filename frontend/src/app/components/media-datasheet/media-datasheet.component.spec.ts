@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteCustomerComponent } from './delete-customer.component';
+import { MediaDatasheetComponent } from './media-datasheet.component';
 
-describe('DeleteCustomerComponent', () => {
-  let component: DeleteCustomerComponent;
-  let fixture: ComponentFixture<DeleteCustomerComponent>;
+describe('MediaDatasheetComponent', () => {
+  let component: MediaDatasheetComponent;
+  let fixture: ComponentFixture<MediaDatasheetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DeleteCustomerComponent]
+      imports: [MediaDatasheetComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DeleteCustomerComponent);
+    fixture = TestBed.createComponent(MediaDatasheetComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

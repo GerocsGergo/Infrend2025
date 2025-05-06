@@ -97,6 +97,16 @@ body {
     color: white;
     border: none;
   }
+
+  .action-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+  }
+  
+  .action-button:hover {
+    background-color: #218838;
+  }
   
   .bottom-button:hover {
     background-color: #0056b3;
@@ -181,4 +191,7 @@ body {
     font-size: 20px;
     color: #155724; /* Match text color */
   }
+
+  
+  
   

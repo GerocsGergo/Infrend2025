@@ -11,10 +11,8 @@ export class MainMenuComponent {
 
   router = inject(Router);
 
-  openTest(){
-    this.router.navigate(['test-menu']);
-  }
 
+  //Customer
   openAllCustomer(){
     this.router.navigate(['list-all-customer']);
   }
@@ -23,15 +21,27 @@ export class MainMenuComponent {
     this.router.navigate(['find-customer']);
   }
 
-  openModifyCustomer(){
+/*   openModifyCustomer(){
     this.router.navigate(['modify-customer']);
   }
 
   openDeleteCustomer(){
     this.router.navigate(['delete-customer']);
-  }
+  } */
 
   openCreateCustomer(){
     this.router.navigate(['create-customer']);
   }
-}
+
+
+  //Media
+  openAllMedia(){
+    this.router.navigate(['list-all-media']);
+  }
+
+  openCreateMedia(){
+    this.router.navigate(['create-media']);
+  }
+
+
+  }

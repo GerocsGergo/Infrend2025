@@ -16,11 +16,15 @@ export class ListAllCustomerComponent implements OnInit{
   router = inject(Router);
   customers: CustomerDTO[] = [];
 
+  errorMessage: string = "";
+  
+
   ngOnInit(): void { 
     this.customerService.getAllCustomer().subscribe({
       next: (customers) => this.customers = customers,
       error: (err) => {
         console.error('Failed to load customers', err)
+        this.errorMessage = err.error.message;
       }
       
     });

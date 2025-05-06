@@ -1,0 +1,37 @@
+<div class="page">
+    <div class="title-container">
+      <h1 class="title">VideoWarehouse</h1>
+    </div>
+  
+    <h2>Kazetták és Dvd-k Listája</h2>
+  
+    <div class="main-menu-island">
+      <table class="customer-table">
+        <thead>
+          <tr>
+            <th>Sorszám</th>
+            <th>Cím</th>
+            <th>Státusz</th>
+            <th>Típus</th>
+            <th>Adatlap</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(media of medias; track media.sorszam) {
+          <tr>
+            <td>{{ media.sorszam }}</td>
+            <td>{{ media.cim }}</td>
+            <td>{{ media.statusz }}</td>
+            <td>{{ media.tipus }}</td>
+            <td>
+              <button (click)="openMediaDatasheet(media.sorszam)">Adatlap</button>
+            </td>
+          </tr>
+        }
+        </tbody>
+      </table>
+  
+      <button class="back-button" (click)="openMainMenu()">Vissza a főmenübe</button>
+    </div>
+  </div>
+  

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TestMenuComponent } from './test-menu.component';
+import { CreateMediaComponent } from './create-media.component';
 
-describe('TestMenuComponent', () => {
-  let component: TestMenuComponent;
-  let fixture: ComponentFixture<TestMenuComponent>;
+describe('CreateMediaComponent', () => {
+  let component: CreateMediaComponent;
+  let fixture: ComponentFixture<CreateMediaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TestMenuComponent]
+      imports: [CreateMediaComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TestMenuComponent);
+    fixture = TestBed.createComponent(CreateMediaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
