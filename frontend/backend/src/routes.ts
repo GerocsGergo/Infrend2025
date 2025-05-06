@@ -28,8 +28,9 @@ router.post('/createCustomer', customerController.createCustomer);
 const mediaController = new MediaController(AppDataSource);
 router.get('/getAllMedia', mediaController.getAllMedia);
 router.post('/createMedia', mediaController.createMedia);
-router.put('/deleteMedia/:azonosito', mediaController.deleteMedia);
-router.put('/modifyMedia/:azonosito', mediaController.modifyMedia);
+router.put('/deleteMedia/:sorszam', mediaController.deleteMedia);
+router.put('/modifyMedia/:sorszam', mediaController.modifyMedia);
+router.get('/openMedia/:sorszam', mediaController.openMedia);
 
 
 export { router };

@@ -11,8 +11,9 @@
           <tr>
             <th>Sorszám</th>
             <th>Cím</th>
-            <th>Státusz</th>
+            <th>Beszerzés dátuma</th>
             <th>Típus</th>
+            <th>Státusz</th>
             <th>Adatlap</th>
           </tr>
         </thead>
@@ -21,8 +22,9 @@
           <tr>
             <td>{{ media.sorszam }}</td>
             <td>{{ media.cim }}</td>
-            <td>{{ media.statusz }}</td>
+            <td>{{ media.beszerzes_datuma | date: 'yyyy-MM-dd' }}</td>
             <td>{{ media.tipus }}</td>
+            <td>{{ media.statusz }}</td>
             <td>
               <button (click)="openMediaDatasheet(media.sorszam)">Adatlap</button>
             </td>

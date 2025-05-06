@@ -29,7 +29,7 @@ export const routes: Routes = [
 
     { path: 'list-all-media', component: ListAllMediaComponent},
 
-    { path: 'media-datasheet', component: MediaDatasheetComponent},
+    { path: 'media-datasheet/:sorszam', component: MediaDatasheetComponent},
 
     { path: 'create-media', component: CreateMediaComponent}
 

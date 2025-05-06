@@ -2,11 +2,12 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MediaService } from '../../services/media.service';
 import { MediaDTO } from '../../../../models';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-list-all-media',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './list-all-media.component.html',
   styleUrl: './list-all-media.component.css'
 })

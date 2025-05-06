@@ -10,7 +10,7 @@ export class Media implements MediaDTO{
     @Column()
     cim: string;
     
-    @Column()
+    @Column({ type: 'date', nullable: false })
     beszerzes_datuma: Date;
 
     @Column({

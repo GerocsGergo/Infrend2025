@@ -40,3 +40,8 @@
 ### WIP Version
 - Can list all medias
 - Worked on media and borrowings tables
+
+ ## [v0.5.0] - 2025-05-06
+### WIP Version
+- Created Datasheet for medias
+- Can modify medias
