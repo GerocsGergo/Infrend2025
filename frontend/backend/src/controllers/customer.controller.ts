@@ -13,7 +13,11 @@ export class CustomerController{
 
         getAllCustomer = async (req,res) => {
             try{
-                const customers = await this.customerTable.find();
+                const customers = await this.customerTable.find({
+                  order: {
+                    azonosito: 'ASC'
+                  }
+                });
 
                 if (!customers) {
                     res.status(404).json({ message: 'Hiba történt az adatok lekérésében' });
@@ -98,19 +102,26 @@ export class CustomerController{
                 if (!isValidAzonosito(azonosito)) {
                   return res.status(400).json({ message: 'Nem érvényes azonosito.' });
                 }
-                customer = await this.customerTable.find({where: {azonosito: Number(azonosito)} });
+                customer = await this.customerTable.find({
+                  where: {azonosito: Number(azonosito)},
+                  order: {azonosito: 'ASC'} 
+                });
               }
               else if (szemelyiszam) {
                 if (!isValidSzemelyiszam(szemelyiszam)) {
                   return res.status(400).json({ message: 'Nem érvényes személyiszám.' });
                 }
-                customer = await this.customerTable.find({where: {szemelyiszam} });
+                customer = await this.customerTable.find({
+                  where: {szemelyiszam},
+                  order: {azonosito: 'ASC'}  });
               }
               else if (nev) {
                 if (!isValidNev(nev)) {
                   return res.status(400).json({ message: 'Nem érvényes név.' });
                 }
-                customer = await this.customerTable.find({ where: { nev } });
+                customer = await this.customerTable.find({
+                  where: { nev },
+                  order: {azonosito: 'ASC'}  });
               }
               else {
                 return res.status(400).json({ message: 'Nincs megadva keresési feltétel' });

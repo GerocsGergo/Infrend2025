@@ -13,7 +13,11 @@ export class MediaController{
 
     getAllMedia = async(req, res) => {
         try{
-            const medias = await this.mediaTable.find();
+            const medias = await this.mediaTable.find({
+              order: {
+                sorszam: 'ASC'
+              }
+            });
 
             if (!medias) {
                 res.status(404).json({ message: 'Hiba történt az adatok lekérésében' });
@@ -47,9 +51,46 @@ export class MediaController{
                 }   
         }; 
 
-    createMedia = async(req, res) => {
-
-    };
+        createMedia = async (req, res) => {
+          try {
+            const { cim, beszerzes_datuma, tipus } = req.body;
+        
+            // Kötelező mezők ellenőrzése
+            if (!cim || !beszerzes_datuma || !tipus) {
+              return res.status(400).json({ message: 'A cím, típus és beszerzés dátuma megadása kötelező.' });
+            }
+        
+            // Validációk
+            if (!isValidCim(cim)) {
+              return res.status(400).json({ message: 'Érvénytelen cím.' });
+            }
+        
+            if (!isValidDatum(beszerzes_datuma)) {
+              return res.status(400).json({ message: 'Érvénytelen beszerzési dátum.' });
+            }
+        
+            if (!isValidTipus(tipus)) {
+              return res.status(400).json({ message: 'Érvénytelen típus. Csak "kazetta" vagy "DVD" lehet.' });
+            }
+        
+        
+            // Új példány létrehozása
+            const newMedia = this.mediaTable.create({
+              cim,
+              beszerzes_datuma: new Date(beszerzes_datuma),
+              tipus,
+              statusz: 'szabad',
+            });
+        
+            await this.mediaTable.save(newMedia);
+        
+            res.json({ message: 'Új média sikeresen hozzáadva!', media: newMedia });
+        
+          } catch (err) {
+            this.handleError(res, err);
+          }
+        };
+        
 
     modifyMedia = async (req, res) => {
         try {

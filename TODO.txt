@@ -45,6 +45,7 @@ CREATE TABLE borrowings (
 );
 
 TODO Kölcsonzés létrehozása (rögzitése)
-TODO media hozzáadása
-
+TODO kölcsönzés törlése
+TODO idős kereső cucc
+TODO két create menu legyen má szép
 

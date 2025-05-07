@@ -30,6 +30,16 @@ export class MediaService {
     deleteMedia(sorszam: number){
       return this.http.put('/api/deleteMedia/' + sorszam,{});
     }
+    
+    createMedia(cim: string, tipus: string, beszerzes_datuma: string){
+      const body: any = {};
+
+      if (cim !== undefined) body.cim = cim;
+      if (tipus !== undefined) body.tipus = tipus;
+      if (beszerzes_datuma !== undefined) body.beszerzes_datuma = beszerzes_datuma;
+
+      return this.http.post('/api/createMedia/', body);
+    }
 
 
 }

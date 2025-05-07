@@ -50,3 +50,8 @@
 ### WIP Version
 - Customers datasheet can now list the borrowings
 - Borrowings list navigation corrected
+
+ ## [v0.7.0] - 2025-05-07
+### WIP Version
+- Can add medias
+- Updated get endpoints
