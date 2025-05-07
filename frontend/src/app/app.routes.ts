@@ -9,6 +9,8 @@ import { ListAllMediaComponent } from './components/list-all-media/list-all-medi
 import { MediaDatasheetComponent } from './components/media-datasheet/media-datasheet.component';
 import { CreateMediaComponent } from './components/create-media/create-media.component';
 import { CustomerAllBorrowingsComponent } from './components/customer-all-borrowings/customer-all-borrowings.component';
+import { FindCustomerToCreateBorrowingComponent } from './components/find-customer-to-create-borrowing/find-customer-to-create-borrowing.component';
+import { CreateBorrowingComponent } from './components/create-borrowing/create-borrowing.component';
 
 
 export const routes: Routes = [
@@ -36,6 +38,10 @@ export const routes: Routes = [
 
     //Borrowings
 
-    { path: 'customer-all-borrowings/:azonosito', component: CustomerAllBorrowingsComponent}
+    { path: 'customer-all-borrowings/:azonosito', component: CustomerAllBorrowingsComponent},
+
+    { path: 'find-customer-to-create-borrowing/:azonosito', component: FindCustomerToCreateBorrowingComponent},
+
+    { path: 'create-borrowing/:azonosito', component: CreateBorrowingComponent}
 
 ];

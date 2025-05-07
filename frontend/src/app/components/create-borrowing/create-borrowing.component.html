@@ -1,0 +1,63 @@
+<div class="page">
+    <div class="title-container">
+      <h1 class="title">VideoWarehouse</h1>
+    </div>
+  
+    <h2>Ügyfél kölcsönzéseinek Listája</h2>
+  
+    <div class="main-menu-island">
+
+        <div *ngIf="showUpdatePopup" class="popup-overlay">
+            <div class="popup">
+              <h3>Média hozzáadása</h3>
+              <input type="number" [(ngModel)]="newValue" placeholder="Sorszám">
+              <div class="popup-buttons">
+                <button (click)="addMedia()">Hozzáadás</button>
+                <button (click)="closeUpdatePopup()">Mégse</button>
+              </div>
+              <div *ngIf="errorMessage" class="error-message">
+                <p>{{ errorMessage }}</p>
+              </div>
+            </div>
+          </div>
+
+
+            <table class="customer-table" *ngIf="borrowings.length > 0">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Sorszám</th>
+                    <th>Azonosító</th>
+                    <th>Kölcsönzés dátuma</th>
+                    <th>Visszahozás dátuma</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(borrowing of borrowings; track borrowing.id) {
+                  <tr>
+                    <td>{{ borrowing.id }}</td>
+                    <td>{{ borrowing.media.sorszam }}</td>
+                    <td>{{ borrowing.customer.azonosito }}</td>
+                    <td>{{ borrowing.kolcsonzes_datuma | date: 'yyyy-MM-dd' }}</td>
+                    <td>{{ borrowing.visszahozas_datuma| date: 'yyyy-MM-dd' }}</td>
+                  </tr>
+                }
+                </tbody>
+              </table>
+        
+
+        <!-- Ha nincs kölcsönzés, mondjuk ki -->
+    <div *ngIf="borrowings.length === 0 && !errorMessage">
+        <p>Nincs kölcsönzése az ügyfélnek.</p>
+    </div>
+     
+  
+      
+
+      <div class="button-container">
+        <button class="bottom-button" (click)="openBackMenu(azonosito)">Vissza a listához</button>
+      <button class="action-button" (click)="openUpdatePopup()">Hozzáadás</button>
+      </div>
+    </div>
+  </div>
+  

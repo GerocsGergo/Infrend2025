@@ -55,3 +55,8 @@
 ### WIP Version
 - Can add medias
 - Updated get endpoints
+
+ ## [v0.8.0] - 2025-05-08
+### WIP Version
+- Can create borrowings
+

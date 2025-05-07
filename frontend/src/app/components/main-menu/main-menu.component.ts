@@ -43,5 +43,10 @@ export class MainMenuComponent {
     this.router.navigate(['create-media']);
   }
 
+  openFindCustomerToBorrowing(){
+    const azonosito = 0;
+    this.router.navigate(['find-customer-to-create-borrowing', azonosito]);
+  }
+
 
   }

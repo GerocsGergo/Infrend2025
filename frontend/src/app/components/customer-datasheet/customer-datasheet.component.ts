@@ -95,7 +95,6 @@ export class CustomerDatasheetComponent implements OnInit{
 
   openUpdatePopup(field: UpdatableCustomerField) {
     this.fieldToUpdate = field;
-    this.newValue = this.customer[field];
     this.showUpdatePopup = true;
   }
 

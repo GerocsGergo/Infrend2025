@@ -36,5 +36,7 @@ router.get('/openMedia/:sorszam', mediaController.openMedia);
 //Borrowings
 const borrowingController = new BorrowingController(AppDataSource);
 router.get('/getCustomerBorrowings/:azonosito', borrowingController.getCustomerBorrowings);
+router.get('/findCustomerToBorrowing', borrowingController.findCustomerToBorrowing);
+router.post('/createBorrowing', borrowingController.createBorrowing);
 
 export { router };

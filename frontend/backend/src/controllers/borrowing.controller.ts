@@ -1,15 +1,23 @@
 import { Request, Response } from 'express';
 import { Repository } from 'typeorm';
 import { Borrowing } from '../entity/Borrowing';
-import { isValidSorszam,isValidAzonosito
+import { isValidSorszam,isValidAzonosito, isValidKolcsonzesDatuma
 } from '../validators/borrowingValidator';
+import { Customer } from '../entity/Customer';
+import { Media } from '../entity/Media';
 
 
 export class BorrowingController{
     private borrowingTable: Repository<Borrowing>;
+    private customerTable: Repository<Customer>;
+    private mediaTable: Repository<Media>;
             constructor(dataSource) {
                 this.borrowingTable = dataSource.getRepository(Borrowing);
+                this.customerTable = dataSource.getRepository(Customer);
+                this.mediaTable = dataSource.getRepository(Media);
             };
+
+    
 
         getCustomerBorrowings = async(req, res) => { //beolvassa az ugyfel osszes kolcsonzését
             try {
@@ -31,7 +39,92 @@ export class BorrowingController{
                 }   
         }; 
 
+        findCustomerToBorrowing = async(req, res) => {
+            try {
+                
+              const { azonosito } = req.query;
+              let customer = null;
+          
+              if (azonosito && azonosito != 0) {
+                if (!isValidAzonosito(azonosito)) {
+                  return res.status(400).json({ message: 'Nem érvényes azonosito.' });
+                }
+                customer = await this.customerTable.find({
+                  where: {azonosito: Number(azonosito)},
+                  order: {azonosito: 'ASC'} 
+                });
+              }
+              else {
+                return res.status(400).json({ message: 'Nincs megadva keresési feltétel' });
+              }
+          
+              if (!customer || (Array.isArray(customer) && customer.length === 0)) {
+                return res.status(404).json({ message: 'Nincs ilyen ügyfél' });
+              }
+          
+              res.json(customer);
 
+            } catch (err) {
+                this.handleError(res, err);
+            }
+        };
+
+        createBorrowing = async (req, res) => {
+          try {
+            const { sorszam, azonosito, kolcsonzes_datuma } = req.body;
+        
+            if (!sorszam || !azonosito || !kolcsonzes_datuma) {
+              return res.status(400).json({ message: 'A három adat megadása kötelező.' });
+            }
+        
+            if (!isValidSorszam(sorszam)) {
+              return res.status(400).json({ message: 'Érvénytelen sorszám.' });
+            }
+        
+            if (!isValidAzonosito(azonosito)) {
+              return res.status(400).json({ message: 'Érvénytelen azonosító.' });
+            }
+        
+            if (!isValidKolcsonzesDatuma(kolcsonzes_datuma)) {
+              return res.status(400).json({ message: 'Érvénytelen dátum.' });
+            }
+            
+
+              const media = await this.mediaTable.findOneBy({ sorszam });
+              if (!media) {
+                return res.status(404).json({ message: 'A megadott sorszámhoz nem található média.' });
+              }
+
+              if (media.statusz === 'kikölcsönzött') {
+                return res.status(400).json({ message: 'A média már ki van kölcsönözve.' });
+              }
+
+              if (media.statusz === 'selejtezett') {
+                return res.status(400).json({ message: 'A média selejtezett, nem lehet kikölcsönözni.' });
+              }
+
+              const customer = await this.customerTable.findOneBy({ azonosito });
+              if (!customer) {
+                return res.status(404).json({ message: 'A megadott azonosítóhoz nem található ügyfél.' });
+              }
+
+              const newBorrowing = this.borrowingTable.create({
+                media,
+                customer,
+                kolcsonzes_datuma: new Date(kolcsonzes_datuma),
+              });
+        
+            await this.borrowingTable.save(newBorrowing);
+              
+            media.statusz = 'kikölcsönzött';
+            await this.mediaTable.save(media);
+
+            res.json({ message: 'Új kölcsönzés sikeresen hozzáadva!', borrowing: newBorrowing });
+        
+          } catch (err) {
+            this.handleError(res, err);
+          }          
+        };
 
     handleError = (res: Response, err: any, status = 500, message = 'Ismeretlen szerver hiba.') => {
         if (err) {
