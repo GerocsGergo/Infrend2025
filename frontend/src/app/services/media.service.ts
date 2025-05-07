@@ -26,5 +26,10 @@ export class MediaService {
   
       return this.http.put('/api/modifyMedia/' + sorszam, body);
     }
-    
+
+    deleteMedia(sorszam: number){
+      return this.http.put('/api/deleteMedia/' + sorszam,{});
+    }
+
+
 }

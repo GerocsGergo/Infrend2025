@@ -8,6 +8,7 @@ import { CreateCustomerComponent } from './components/create-customer/create-cus
 import { ListAllMediaComponent } from './components/list-all-media/list-all-media.component';
 import { MediaDatasheetComponent } from './components/media-datasheet/media-datasheet.component';
 import { CreateMediaComponent } from './components/create-media/create-media.component';
+import { CustomerAllBorrowingsComponent } from './components/customer-all-borrowings/customer-all-borrowings.component';
 
 
 export const routes: Routes = [
@@ -31,6 +32,10 @@ export const routes: Routes = [
 
     { path: 'media-datasheet/:sorszam', component: MediaDatasheetComponent},
 
-    { path: 'create-media', component: CreateMediaComponent}
+    { path: 'create-media', component: CreateMediaComponent},
+
+    //Borrowings
+
+    { path: 'customer-all-borrowings/:azonosito', component: CustomerAllBorrowingsComponent}
 
 ];

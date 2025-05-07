@@ -147,4 +147,9 @@ export class CustomerDatasheetComponent implements OnInit{
     }
   }
 
+  openCustomerBorrowings(azonosito: number){ 
+    const backButtonCode = this.backButtonCode
+    this.router.navigate(['customer-all-borrowings', azonosito], { queryParams: { backButtonCode} });
+  }
+
 }

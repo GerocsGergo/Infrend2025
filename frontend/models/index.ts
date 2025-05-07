@@ -22,8 +22,21 @@ export interface MediaDTO {
 
 export interface BorrowingDTO {
     id: number;
-    sorszam: number;
-    azonosito: number;
+    media: {
+        sorszam: number;
+        cim: string;
+        beszerzes_datuma: Date;
+        tipus: string;
+        statusz: string;
+      };
+      customer: {
+        azonosito: number;
+        nev: string;
+        telefonszam: string;
+        szemelyiszam: string;
+        lakcim: string;
+        statusz: string;
+      };
     kolcsonzes_datuma: Date;
     visszahozas_datuma: Date | null;
   }

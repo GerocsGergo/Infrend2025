@@ -1,0 +1,44 @@
+<div class="page">
+    <div class="title-container">
+      <h1 class="title">VideoWarehouse</h1>
+    </div>
+  
+    <h2>Ügyfél kölcsönzéseinek Listája</h2>
+  
+    <div class="main-menu-island">
+            <table class="customer-table" *ngIf="borrowings.length > 0">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Sorszám</th>
+                    <th>Azonosító</th>
+                    <th>Kölcsönzés dátuma</th>
+                    <th>Visszahozás dátuma</th>
+                    <th>Akció</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(borrowing of borrowings; track borrowing.id) {
+                  <tr>
+                    <td>{{ borrowing.id }}</td>
+                    <td>{{ borrowing.media.sorszam }}</td>
+                    <td>{{ borrowing.customer.azonosito }}</td>
+                    <td>{{ borrowing.kolcsonzes_datuma | date: 'yyyy-MM-dd' }}</td>
+                    <td>{{ borrowing.visszahozas_datuma| date: 'yyyy-MM-dd' }}</td>
+                    <td><button class="back-button" (click)="openBackMenu(azonosito)">Adatlap</button></td>
+                  </tr>
+                }
+                </tbody>
+              </table>
+        
+
+        <!-- Ha nincs kölcsönzés, mondjuk ki -->
+    <div *ngIf="borrowings.length === 0 && !errorMessage">
+        <p>Nincs kölcsönzése az ügyfélnek.</p>
+    </div>
+     
+  
+      <button class="back-button" (click)="openBackMenu(azonosito)">Vissza a listához</button>
+    </div>
+  </div>
+  

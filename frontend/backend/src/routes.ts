@@ -4,6 +4,7 @@ import { Router } from 'express';
 import { AppDataSource } from './data-source';
 import { CustomerController } from './controllers/customer.controller';
 import { MediaController } from './controllers/media.controller';
+import { BorrowingController } from './controllers/borrowing.controller';
 
 const router = Router();
 
@@ -32,5 +33,8 @@ router.put('/deleteMedia/:sorszam', mediaController.deleteMedia);
 router.put('/modifyMedia/:sorszam', mediaController.modifyMedia);
 router.get('/openMedia/:sorszam', mediaController.openMedia);
 
+//Borrowings
+const borrowingController = new BorrowingController(AppDataSource);
+router.get('/getCustomerBorrowings/:azonosito', borrowingController.getCustomerBorrowings);
 
 export { router };

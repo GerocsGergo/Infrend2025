@@ -45,3 +45,8 @@
 ### WIP Version
 - Created Datasheet for medias
 - Can modify medias
+
+ ## [v0.6.0] - 2025-05-07
+### WIP Version
+- Customers datasheet can now list the borrowings
+- Borrowings list navigation corrected

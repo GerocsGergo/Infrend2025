@@ -44,8 +44,7 @@ CREATE TABLE borrowings (
     FOREIGN KEY (azonosito) REFERENCES customer(azonosito)
 );
 
-
-TODO kazetta tábla hogy nézzen ki?
-TODO listázást megcsinálni
+TODO Kölcsonzés létrehozása (rögzitése)
+TODO media hozzáadása
 
 

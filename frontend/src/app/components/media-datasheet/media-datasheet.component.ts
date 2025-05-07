@@ -111,8 +111,20 @@ export class MediaDatasheetComponent implements OnInit{
     }
 
     deleteMedia(){
-
+      this.mediaService.deleteMedia(this.sorszam).subscribe({
+        next: (response) => {
+          console.log(response)
+          this.media.statusz = 'selejtezett';
+        },
+        error: (err) => {
+          console.error('Failed to delete media:', err);
+          this.errorMessage = err.error.message;
+        }
+      });
     }
+
+    
+    
 
 
 }

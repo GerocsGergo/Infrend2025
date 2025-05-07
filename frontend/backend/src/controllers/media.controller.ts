@@ -101,7 +101,27 @@ export class MediaController{
       
 
     deleteMedia = async(req, res) => {
-        
+        try {
+          const sorszam = req.params['sorszam'];
+
+          if (!isValidSorszam(sorszam)) {
+            return res.status(400).json({message: 'Érvénytelen sorszám'});
+          }
+
+          const media = await this.mediaTable.findOneBy({ sorszam: Number(sorszam)});
+          
+          if (!media) {
+            return res.status(404).json({message: 'Nincs ilyen média'});
+          }
+
+          media.statusz = 'selejtezett';
+          await this.mediaTable.save(media);
+
+          res.json({message: 'A média státusza sikeren módosítva: selejtezett', media});
+
+        } catch (err) {
+          this.handleError(res, err);
+        }
     };
 
 
