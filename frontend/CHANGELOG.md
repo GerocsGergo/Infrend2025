@@ -69,3 +69,7 @@
 ### WIP Version
 - Can search borrowings with user set date
 
+ ## [v0.10.1] - 2025-05-09
+### WIP Version
+- Made some style changes
+

@@ -1,14 +1,16 @@
 <div class="page">
   <div class="welcome-container">
       <div class="welcome-island">
-
         <h1>Üdözlöm a VideoWarehouse-ban!</h1>
-        <button class="login-button" (click)="login()" >Belépés</button>
+        <button class="login-button" (click)="login()">Belépés</button>
       </div>
     </div>
-
-    <div class="version-container">  
+    <div class="version-container-container">
+      <div class="version-container">  
       <div class="version-counter" id="versionInfo" name="versionInfo">{{ versionInfo.version || 'N/A' }}</div>
-      <div class="version-counter">change log</div>
+      <a class="version-counter" href="https://github.com/GerocsGergo/Infrend2025/blob/main/frontend/CHANGELOG.md">change log</a>
     </div>
+  </div>
+    
+
 </div>
