@@ -1,0 +1,58 @@
+<div class="page">
+  <div class="title-container">
+    <h1 class="title">VideoWarehouse</h1>
+  </div>
+
+  <h2>Média Keresés</h2>
+
+  <div class="main-menu-island">
+    <table class="search-table">
+      <tbody>
+        <tr>
+          <td>Sorszám</td>
+          <td><input type="number" [(ngModel)]="sorszam" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <button class="action-button" (click)="findMedia()">Keresés</button>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+      
+
+    
+  </div>
+
+  <table class="customer-table">
+    <thead>
+      @if (isTableShowing) {
+      <tr>
+        <th>Sorszám</th>
+        <th>Cím</th>
+        <th>Beszerzés dátuma</th>
+        <th>Típus</th>
+        <th>Státusz</th>
+        <th>Adatlap</th>
+      </tr>}
+      
+    </thead>
+    <tbody>
+      @for(media of medias; track media.sorszam) {
+        <tr>
+          <td>{{ media.sorszam }}</td>
+          <td>{{ media.cim }}</td>
+          <td>{{ media.beszerzes_datuma | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ media.tipus }}</td>
+          <td>{{ media.statusz }}</td>
+          <td>
+            <button (click)="openMediaDatasheet(media.sorszam)">Adatlap</button>
+          </td>
+        </tr>
+    }
+    </tbody>
+  </table>
+  <button class="back-button" (click)="openMainMenu()">Vissza a főmenübe</button>
+</div>
+

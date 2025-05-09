@@ -34,6 +34,7 @@ export class MediaDatasheetComponent implements OnInit{
     newValue: string = '';
   
     errorMessage: string = '';
+    errorMessageDelete: string = '';
     successMessage: string = '';
 
     ngOnInit() {
@@ -118,7 +119,7 @@ export class MediaDatasheetComponent implements OnInit{
         },
         error: (err) => {
           console.error('Failed to delete media:', err);
-          this.errorMessage = err.error.message;
+          this.errorMessageDelete = err.error.message;
         }
       });
     }

@@ -38,5 +38,9 @@ const borrowingController = new BorrowingController(AppDataSource);
 router.get('/getCustomerBorrowings/:azonosito', borrowingController.getCustomerBorrowings);
 router.get('/findCustomerToBorrowing', borrowingController.findCustomerToBorrowing);
 router.post('/createBorrowing', borrowingController.createBorrowing);
+router.get('/findMediaToBorrowing', borrowingController.findMediaToBorrowing);
+router.put('/deleteBorrowing/:sorszam', borrowingController.deleteBorrowing);
+
+
 
 export { router };

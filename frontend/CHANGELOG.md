@@ -60,3 +60,9 @@
 ### WIP Version
 - Can create borrowings
 
+ ## [v0.9.0] - 2025-05-09
+### WIP Version
+- Can change status of borrowings
+- bugfixes
+
+

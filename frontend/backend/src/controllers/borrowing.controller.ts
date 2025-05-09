@@ -69,6 +69,80 @@ export class BorrowingController{
             }
         };
 
+        findMediaToBorrowing = async(req, res) => {
+          try {
+              
+            const { sorszam } = req.query;
+            let media = null;
+        
+            if (sorszam && sorszam != 0) {
+              if (!isValidSorszam(sorszam)) {
+                return res.status(400).json({ message: 'Nem érvényes sorszám.' });
+              }
+              media = await this.mediaTable.find({
+                where: {sorszam: Number(sorszam)},
+                order: {sorszam: 'ASC'} 
+              });
+            }
+            else {
+              return res.status(400).json({ message: 'Nincs megadva keresési feltétel' });
+            }
+        
+            if (!media || (Array.isArray(media) && media.length === 0)) {
+              return res.status(404).json({ message: 'Nincs ilyen médiaügyfél' });
+            }
+        
+            res.json(media);
+
+          } catch (err) {
+              this.handleError(res, err);
+          }
+        };
+
+        deleteBorrowing = async (req,res) => { // a borrowing tablaba be kell állítani a visszahozas datumat
+                try {
+                  const sorszam = req.params['sorszam'];
+              
+                  if (!isValidAzonosito(sorszam)) {
+                    return res.status(400).json({ message: 'Érvénytelen sorszám.' });
+                  }
+              
+                  const media = await this.mediaTable.findOneBy({ sorszam: Number(sorszam) });
+              
+                  if (!media) {
+                    return res.status(404).json({ message: 'Nincs ilyen média.' });
+                  }
+              
+                  media.statusz = 'szabad';
+                  await this.mediaTable.save(media);
+              
+                  
+                  // Megkeressük az aktív kölcsönzést ehhez a médiához (visszahozas_datuma null)
+                  const borrowing = await this.borrowingTable.findOne({
+                    where: {
+                      media: { sorszam: Number(sorszam) },
+                      visszahozas_datuma: null
+                    },
+                    relations: ['media', 'customer']
+                  });
+
+                  if (borrowing) {
+                    borrowing.visszahozas_datuma = new Date();
+                    await this.borrowingTable.save(borrowing);
+                  }
+
+                  res.json({
+                    message: 'A média visszahozva és kölcsönzés lezárva.',
+                    media,
+                    borrowing
+                  });
+
+                } catch (err) {
+                  this.handleError(res, err);
+                }
+
+        };      
+
         createBorrowing = async (req, res) => {
           try {
             const { sorszam, azonosito, kolcsonzes_datuma } = req.body;

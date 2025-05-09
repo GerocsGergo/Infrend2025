@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { BorrowingDTO, CustomerDTO } from '../../../models';
+import { BorrowingDTO, CustomerDTO, MediaDTO } from '../../../models';
 
 @Injectable({ 
     providedIn: 'root' 
@@ -22,7 +22,17 @@ export class BorrowingService {
       }
   
       return this.http.get<CustomerDTO | CustomerDTO[]>('/api/findCustomerToBorrowing', { params });
-    }    
+    }
+    
+    findMediaToBorrowing(sorszam?: number) {
+      let params = new HttpParams();
+  
+      if (sorszam !== undefined) {
+        params = params.set('sorszam', sorszam);
+      }
+  
+      return this.http.get<MediaDTO | MediaDTO[]>('/api/findMediaToBorrowing', { params });
+    }  
 
     createBorrowing(sorszam: string, azonosito: string, kolcsonzes_datuma: string) {
       const body: any = {};
@@ -31,6 +41,10 @@ export class BorrowingService {
       if (kolcsonzes_datuma !== undefined) body.kolcsonzes_datuma = kolcsonzes_datuma;
     
       return this.http.post('/api/createBorrowing/', body);
+    }
+
+    deleteBorrowing(sorszam: number){
+      return this.http.put<any>('/api/deleteborrowing/' + sorszam,{});
     }
     
 

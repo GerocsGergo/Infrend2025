@@ -48,5 +48,10 @@ export class MainMenuComponent {
     this.router.navigate(['find-customer-to-create-borrowing', azonosito]);
   }
 
+  openFindMediaToBorrowing(){
+    const sorszam = 0;
+    this.router.navigate(['find-media-to-delete-borrowing', sorszam]);
+  }
+
 
   }

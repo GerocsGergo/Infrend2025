@@ -14,7 +14,6 @@
                     <th>Azonosító</th>
                     <th>Kölcsönzés dátuma</th>
                     <th>Visszahozás dátuma</th>
-                    <th>Akció</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -25,7 +24,6 @@
                     <td>{{ borrowing.customer.azonosito }}</td>
                     <td>{{ borrowing.kolcsonzes_datuma | date: 'yyyy-MM-dd' }}</td>
                     <td>{{ borrowing.visszahozas_datuma| date: 'yyyy-MM-dd' }}</td>
-                    <td><button class="back-button" (click)="openBackMenu(azonosito)">Adatlap</button></td>
                   </tr>
                 }
                 </tbody>

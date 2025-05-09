@@ -11,6 +11,8 @@ import { CreateMediaComponent } from './components/create-media/create-media.com
 import { CustomerAllBorrowingsComponent } from './components/customer-all-borrowings/customer-all-borrowings.component';
 import { FindCustomerToCreateBorrowingComponent } from './components/find-customer-to-create-borrowing/find-customer-to-create-borrowing.component';
 import { CreateBorrowingComponent } from './components/create-borrowing/create-borrowing.component';
+import { FindMediaToDeleteBorrowingComponent } from './components/find-media-to-delete-borrowing/find-media-to-delete-borrowing.component';
+import { MediaDatasheetToDeleteBorrowingComponent } from './components/media-datasheet-to-delete-borrowing/media-datasheet-to-delete-borrowing.component';
 
 
 export const routes: Routes = [
@@ -42,6 +44,9 @@ export const routes: Routes = [
 
     { path: 'find-customer-to-create-borrowing/:azonosito', component: FindCustomerToCreateBorrowingComponent},
 
-    { path: 'create-borrowing/:azonosito', component: CreateBorrowingComponent}
+    { path: 'create-borrowing/:azonosito', component: CreateBorrowingComponent},
 
+    { path: 'find-media-to-delete-borrowing/:sorszam', component: FindMediaToDeleteBorrowingComponent},
+
+    { path: 'media-datasheet-to-delete-borrowing/:sorszam', component: MediaDatasheetToDeleteBorrowingComponent},
 ];

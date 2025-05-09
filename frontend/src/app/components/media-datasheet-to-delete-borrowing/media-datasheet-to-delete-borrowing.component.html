@@ -8,19 +8,6 @@
     <h2 class="customer-title">Média: {{ media.cim }}</h2>
   
     <div class="main-menu-island">
-      <div *ngIf="showUpdatePopup" class="popup-overlay">
-        <div class="popup">
-          <h3>Adat módosítása: {{ getFormattedField(fieldToUpdate) }}</h3>
-          <input type="text" [(ngModel)]="newValue" />
-          <div class="popup-buttons">
-            <button (click)="updateCustomer()">Mentés</button>
-            <button (click)="closeUpdatePopup()">Mégse</button>
-          </div>
-          <div *ngIf="errorMessage" class="error-message">
-            <p>{{ errorMessage }}</p>
-          </div>
-        </div>
-      </div>
       
       <!-- Customer Data Table -->
       <table class="customer-table">
@@ -28,50 +15,41 @@
           <tr>
             <th>Adattípus</th>
             <th>Érték</th>
-            <th>Akció</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <th>Sorszám</th>
             <td>{{ media.sorszam }}</td>
-            <td></td>
           </tr>
           <tr>
             <th>Cím</th>
             <td>{{ media.cim }}</td>
-            <td><button class="update-button" (click)="openUpdatePopup('cim')" >Módosítás</button></td>
           </tr>
           <tr>
             <th>Beszerzés dátuma</th>
             <td>{{ media.beszerzes_datuma }}</td>
-            <td><button class="update-button" (click)="openUpdatePopup('beszerzes_datuma')" >Módosítás</button></td>
           </tr>
           <tr>
             <th>Típus</th>
             <td>{{ media.tipus }}</td>
-            <td><button class="update-button" (click)="openUpdatePopup('tipus')" >Módosítás</button></td>
           </tr>
           <tr>
             <th>Státusz</th>
             <td>{{ media.statusz }}</td>
-            <td></td>
           </tr>
         </tbody>
       </table>
   
       <div class="button-container">
         <button class="bottom-button" (click)="openBackMenu()">Vissza a listához</button>
-        <button class="action-button" (click)="deleteMedia()">Leselejtezés</button>
+        <button class="action-button" (click)="deleteBorrowing()">Média felszabadítása</button>
       </div>
     </div>
   </div>
 
   <div *ngIf="successMessage" class="success-message">
     <p>{{ successMessage }}</p>
-  </div>
-  <div *ngIf="errorMessageDelete" class="error-message">
-    <p>{{ errorMessageDelete }}</p>
   </div>
 
 
