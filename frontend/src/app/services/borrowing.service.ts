@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { BorrowingDTO, CustomerDTO, MediaDTO } from '../../../models';
+import { BorrowingDTO, CustomerDTO, MediaDTO, BorrowingLateDTO } from '../../../models';
 
 @Injectable({ 
     providedIn: 'root' 
@@ -45,6 +45,14 @@ export class BorrowingService {
 
     deleteBorrowing(sorszam: number){
       return this.http.put<any>('/api/deleteborrowing/' + sorszam,{});
+    }
+
+    getLateBorrowings(limit: number) {
+      return this.http.get<BorrowingDTO[]>('api/getLateBorrowings/' + limit);
+    }
+    
+    getLateBorrowingsLimit(limit: number) {
+      return this.http.get<BorrowingLateDTO[]>('api/getLateBorrowingsLimit/' + limit);
     }
     
 

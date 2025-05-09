@@ -1,0 +1,47 @@
+<div class="page">
+    <div class="title-container">
+      <h1 class="title">VideoWarehouse</h1>
+    </div>
+  
+    <h2>Késedelmes kölcsönzések listája ({{ limit }} nap késés után)</h2>
+  
+    <div class="main-menu-island">
+      <table class="customer-table" *ngIf="borrowings.length > 0">
+        <thead>
+          <tr>
+            <th>Sorszám</th>
+            <th>Cím</th>
+            <th>Ügyfél azonosító</th>
+            <th>Ügyfél neve</th>
+            <th>Telefonszám</th>
+            <th>Kölcsönzés dátuma</th>
+            <th>Késés napokban</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (borrowing of borrowings; track borrowing.media.sorszam) {
+          <tr>
+            <td>{{ borrowing.media.sorszam }}</td>
+            <td>{{ borrowing.media.cim }}</td>
+            <td>{{ borrowing.customer.azonosito }}</td>
+            <td>{{ borrowing.customer.nev }}</td>
+            <td>{{ borrowing.customer.telefonszam }}</td>
+            <td>{{ borrowing.kolcsonzes_datuma | date: 'yyyy-MM-dd' }}</td>
+            <td>{{ getDaysLate(borrowing.id) }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+  
+      <div *ngIf="borrowings.length === 0 && !errorMessage">
+        <p>Nincs késedelmes kölcsönzés ezen limit szerint.</p>
+      </div>
+  
+      <div *ngIf="errorMessage">
+        <p>{{ errorMessage }}</p>
+      </div>
+  
+      <button class="back-button" (click)="openBackMenu()">Vissza a főmenübe</button>
+    </div>
+  </div>
+  

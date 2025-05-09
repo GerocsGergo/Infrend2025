@@ -1,0 +1,28 @@
+<div class="page">
+    <div class="title-container">
+      <h1 class="title">VideoWarehouse</h1>
+    </div>
+  
+    <h2>Kölcsönzés Keresés</h2>
+  
+    <div class="main-menu-island">
+      <table class="search-table">
+        <tbody>
+          <tr>
+            <td>Eltelt napok száma</td>
+            <td><input type="number" [(ngModel)]="limit" /></td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <button class="action-button" (click)="openBorrowings(this.limit)">Keresés</button>
+
+        
+  
+      
+    </div>
+  
+    <button class="back-button" (click)="openMainMenu()">Vissza a főmenübe</button>
+  </div>
+  
+  

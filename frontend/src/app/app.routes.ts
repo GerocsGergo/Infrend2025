@@ -13,6 +13,8 @@ import { FindCustomerToCreateBorrowingComponent } from './components/find-custom
 import { CreateBorrowingComponent } from './components/create-borrowing/create-borrowing.component';
 import { FindMediaToDeleteBorrowingComponent } from './components/find-media-to-delete-borrowing/find-media-to-delete-borrowing.component';
 import { MediaDatasheetToDeleteBorrowingComponent } from './components/media-datasheet-to-delete-borrowing/media-datasheet-to-delete-borrowing.component';
+import { FindBorrowingAfterDateComponent } from './components/find-borrowing-after-date/find-borrowing-after-date.component';
+import { ListAllBorrowingsAfterDateComponent } from './components/list-all-borrowings-after-date/list-all-borrowings-after-date.component';
 
 
 export const routes: Routes = [
@@ -49,4 +51,8 @@ export const routes: Routes = [
     { path: 'find-media-to-delete-borrowing/:sorszam', component: FindMediaToDeleteBorrowingComponent},
 
     { path: 'media-datasheet-to-delete-borrowing/:sorszam', component: MediaDatasheetToDeleteBorrowingComponent},
+
+    { path: 'find-borrowing-after-date', component: FindBorrowingAfterDateComponent},
+
+    { path: 'list-all-borrowings-after-date/:limit', component: ListAllBorrowingsAfterDateComponent}
 ];

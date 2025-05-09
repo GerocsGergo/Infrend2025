@@ -40,3 +40,10 @@ export interface BorrowingDTO {
     kolcsonzes_datuma: Date;
     visszahozas_datuma: Date | null;
   }
+
+  export interface BorrowingLateDTO {
+    id: number;
+    daysLate: number;
+  }
+
+  

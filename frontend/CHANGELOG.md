@@ -63,6 +63,9 @@
  ## [v0.9.0] - 2025-05-09
 ### WIP Version
 - Can change status of borrowings
-- bugfixes
+- Bugfixes
 
+ ## [v0.10.0] - 2025-05-09
+### WIP Version
+- Can search borrowings with user set date
 

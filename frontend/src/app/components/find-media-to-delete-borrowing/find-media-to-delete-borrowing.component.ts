@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { BorrowingService } from '../../services/borrowing.service';
 import { MediaDTO } from '../../../../models';
-import { CommonModule, JsonPipe, NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-find-media-to-delete-borrowing',

@@ -199,6 +199,88 @@ export class BorrowingController{
             this.handleError(res, err);
           }          
         };
+      
+        getLateBorrowings = async (req, res) => {
+          try {
+            const limit = req.params['limit'] || 1; // alapból 1 nap
+        
+            const borrowings = await this.borrowingTable //ember már én se értem milyez
+              .createQueryBuilder('borrowing')
+              .leftJoinAndSelect('borrowing.media', 'media')
+              .leftJoinAndSelect('borrowing.customer', 'customer')
+              .where('media.statusz = :statusz', { statusz: 'kikölcsönzött' })
+              .andWhere('borrowing.visszahozas_datuma IS NULL')
+              .orderBy('borrowing.kolcsonzes_datuma', 'ASC')
+              .getMany();
+        
+              const today = new Date();
+              
+              const results = borrowings   //ezt meg pláne 
+              .filter(borrowing => {
+                const kolcsonzesDatuma = new Date(borrowing.kolcsonzes_datuma);
+                const diffTime = today.getTime() - kolcsonzesDatuma.getTime();
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                return diffDays > limit;
+              })
+              .map(borrowing => ({
+                id: borrowing.id,
+                kolcsonzes_datuma: borrowing.kolcsonzes_datuma,
+                visszahozas_datuma: borrowing.visszahozas_datuma,
+                media: {
+                  sorszam: borrowing.media.sorszam,
+                  cim: borrowing.media.cim,
+                  beszerzes_datuma: borrowing.media.beszerzes_datuma,
+                  tipus: borrowing.media.tipus,
+                  statusz: borrowing.media.statusz,
+                },
+                customer: {
+                  azonosito: borrowing.customer.azonosito,
+                  nev: borrowing.customer.nev,
+                  telefonszam: borrowing.customer.telefonszam,
+                  szemelyiszam: borrowing.customer.szemelyiszam,
+                  lakcim: borrowing.customer.lakcim,
+                  statusz: borrowing.customer.statusz,
+                }
+              }));   
+        
+            res.json(results);
+        
+          } catch (err) {
+            this.handleError(res, err);
+          }
+        };
+        
+        getLateBorrowings2 = async (req, res) => {
+          try {
+            const limit = Number(req.params['limit']) || 1;
+        
+            const borrowings = await this.borrowingTable
+              .createQueryBuilder('borrowing')
+              .leftJoinAndSelect('borrowing.media', 'media')
+              .leftJoinAndSelect('borrowing.customer', 'customer')
+              .where('media.statusz = :statusz', { statusz: 'kikölcsönzött' })
+              .andWhere('borrowing.visszahozas_datuma IS NULL')
+              .orderBy('borrowing.kolcsonzes_datuma', 'ASC')
+              .getMany();
+        
+            const today = new Date();
+        
+            const results = borrowings
+              .map(borrowing => {
+                const kolcsonzesDatuma = new Date(borrowing.kolcsonzes_datuma);
+                const diffTime = today.getTime() - kolcsonzesDatuma.getTime();
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                return { id: borrowing.id, daysLate: diffDays };
+              })
+              .filter(item => item.daysLate > limit);
+        
+            res.json(results);
+        
+          } catch (err) {
+            this.handleError(res, err);
+          }
+        };
+        
 
     handleError = (res: Response, err: any, status = 500, message = 'Ismeretlen szerver hiba.') => {
         if (err) {

@@ -53,5 +53,9 @@ export class MainMenuComponent {
     this.router.navigate(['find-media-to-delete-borrowing', sorszam]);
   }
 
+  openFindBorrowingsAfterDate(){
+    this.router.navigate(['find-borrowing-after-date']);
+  }
+
 
   }

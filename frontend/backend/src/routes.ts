@@ -40,6 +40,9 @@ router.get('/findCustomerToBorrowing', borrowingController.findCustomerToBorrowi
 router.post('/createBorrowing', borrowingController.createBorrowing);
 router.get('/findMediaToBorrowing', borrowingController.findMediaToBorrowing);
 router.put('/deleteBorrowing/:sorszam', borrowingController.deleteBorrowing);
+router.get('/getLateBorrowings/:limit', borrowingController.getLateBorrowings);
+router.get('/getLateBorrowingsLimit/:limit', borrowingController.getLateBorrowings2);
+
 
 
 
