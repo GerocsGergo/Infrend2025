@@ -74,7 +74,12 @@
 - Made some style changes
 
  ## [v1.0.0] - 2025-05-12
-### WIP Version
+### Release Version
 - Style changes
 - Bugfixes 
+
+ ## [v1.0.1] - 2025-05-12
+### Release Version
+- Version counter in mainMenu
+- Change log in mainMenu
 
