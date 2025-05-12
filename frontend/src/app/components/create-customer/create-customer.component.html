@@ -1,23 +1,37 @@
-<div class="container">
-  <h2>Új ügyfél létrehozása</h2>
+<div class="page">
+  <div class="title-container">
+    <h1 class="title">VideoWarehouse</h1>
+  </div>
 
-  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-  <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+  <h2 class="menu-title">Új ügyfél regisztrálása</h2>
+  
+  <div class="main-menu-island">
+    <table class="search-table">
+      <tbody>
+        <tr>
+          <td>Név:</td>
+          <td><input type="text" [(ngModel)]="nev" name="nev" required /></td>
+        </tr>
+        <tr>
+          <td>Telefonszám:</td>
+          <td><input type="text" [(ngModel)]="telefonszam" name="telefonszam" required /></td>
+        </tr>
+        <tr>
+          <td>Személyiszám:</td>
+          <td><input type="text" [(ngModel)]="szemelyiszam" name="szemelyiszam" required /></td>
+        </tr>
+        <tr>
+          <td>Lakcím:</td>
+          <td><input type="text" [(ngModel)]="lakcim" name="lakcim" required /></td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" class="action-button" (click)="createCustomer()">Létrehozás</button>
+    
 
-  <form (ngSubmit)="createCustomer()">
-    <label>Név:</label>
-    <input type="text" [(ngModel)]="nev" name="nev" required>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+  </div>
 
-    <label>Telefonszám:</label>
-    <input type="text" [(ngModel)]="telefonszam" name="telefonszam" required>
-
-    <label>Személyiszám:</label>
-    <input type="text" [(ngModel)]="szemelyiszam" name="szemelyiszam" required>
-
-    <label>Lakcím:</label>
-    <input type="text" [(ngModel)]="lakcim" name="lakcim" required>
-
-    <button type="submit">Létrehozás</button>
-    <button type="button" (click)="openMainMenu()">Vissza a főmenübe</button>
-  </form>
+  <button type="button" class="back-button" (click)="openMainMenu()">Vissza a főmenübe</button>
 </div>

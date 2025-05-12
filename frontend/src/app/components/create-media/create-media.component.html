@@ -1,25 +1,39 @@
-<div class="container">
-    <h2>Új média hozzáadása</h2>
+<div class="page">
+  <div class="title-container">
+    <h1 class="title">VideoWarehouse</h1>
+  </div>
+
+  <h2 class="menu-title">Új média hozzáadása</h2>
+
+
+    <div class="main-menu-island">
+      <table class="search-table">
+        <tbody>
+          <tr>
+            <td>Cím:</td>
+            <td><input type="text" [(ngModel)]="cim" name="cim" required /></td>
+          </tr>
+          <tr>
+            <td>Típus:</td>
+            <td><select [(ngModel)]="tipus" name="tipus" required>
+              <option value="" disabled selected>Válassz típust</option>
+              <option value="kazetta">Kazetta</option>
+              <option value="DVD">DVD</option>
+            </select></td>
+          </tr>
+          <tr>
+            <td>Beszerzés dátuma:</td>
+            <td><input type="date" [(ngModel)]="beszerzes_datuma" name="beszerzes_datuma" required /></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="button" class="action-button" (click)="createMedia()">Hozzáadás</button>
+      
   
-    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-    <div *ngIf="successMessage" class="success">{{ successMessage }}</div>
-  
-    <form (ngSubmit)="createMedia()">
-      <label>Cím:</label>
-      <input type="text" [(ngModel)]="cim" name="cim" required>
-  
-      <label>Típus:</label>
-      <select [(ngModel)]="tipus" name="tipus" required>
-        <option value="" disabled selected>Válassz típust</option>
-        <option value="kazetta">Kazetta</option>
-        <option value="DVD">DVD</option>
-      </select>
-  
-      <label>Beszerzés dátuma:</label>
-      <input type="date" [(ngModel)]="beszerzes_datuma" name="beszerzes_datuma" required>
-  
-      <button type="submit" >Létrehozás</button>
-      <button type="button" (click)="openMainMenu()">Vissza a főmenübe</button>
-    </form>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+      <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    </div>
+
+    <button type="button" class="back-button" (click)="openMainMenu()">Vissza a főmenübe</button>
   </div>
   

@@ -1,4 +1,3 @@
 
-TODO két create menu legyen má szép
 TODO main menu stilust többire megcsinlani
 

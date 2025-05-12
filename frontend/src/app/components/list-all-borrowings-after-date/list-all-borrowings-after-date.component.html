@@ -3,7 +3,7 @@
       <h1 class="title">VideoWarehouse</h1>
     </div>
   
-    <h2>Késedelmes kölcsönzések listája ({{ limit }} nap késés után)</h2>
+    <h2 class="menu-title">Késedelmes kölcsönzések listája ({{ limit }} nap késés után)</h2>
   
     <div class="main-menu-island">
       <table class="customer-table" *ngIf="borrowings.length > 0">
@@ -34,14 +34,15 @@
       </table>
   
       <div *ngIf="borrowings.length === 0 && !errorMessage">
-        <p>Nincs késedelmes kölcsönzés ezen limit szerint.</p>
+        <p class="no-customer-message">Nincs késedelmes kölcsönzés ezen limit szerint.</p>
       </div>
   
       <div *ngIf="errorMessage">
         <p>{{ errorMessage }}</p>
       </div>
   
-      <button class="back-button" (click)="openBackMenu()">Vissza a főmenübe</button>
+     
     </div>
+    <button class="back-button" (click)="openBackMenu()">Vissza a főmenübe</button>
   </div>
   

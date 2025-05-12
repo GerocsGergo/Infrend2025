@@ -3,7 +3,7 @@
       <h1 class="title">VideoWarehouse</h1>
     </div>
   
-    <h2>Ügyfél kölcsönzéseinek Listája</h2>
+    <h2 class="menu-title">Ügyfél kölcsönzéseinek Listája</h2>
   
     <div class="main-menu-island">
 
@@ -48,16 +48,14 @@
 
         <!-- Ha nincs kölcsönzés, mondjuk ki -->
     <div *ngIf="borrowings.length === 0 && !errorMessage">
-        <p>Nincs kölcsönzése az ügyfélnek.</p>
+        <p class="no-customer-message">Nincs kölcsönzése az ügyfélnek.</p>
     </div>
      
   
-      
-
-      <div class="button-container">
-        <button class="bottom-button" (click)="openBackMenu(azonosito)">Vissza a listához</button>
-      <button class="action-button" (click)="openUpdatePopup()">Hozzáadás</button>
-      </div>
+    </div>
+    <div class="button-container">
+      <button class="bottom-button" (click)="openBackMenu(azonosito)">Vissza a listához</button>
+    <button class="action-button" (click)="openUpdatePopup()">Hozzáadás</button>
     </div>
   </div>
   

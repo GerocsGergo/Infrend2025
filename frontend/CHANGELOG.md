@@ -73,3 +73,8 @@
 ### WIP Version
 - Made some style changes
 
+ ## [v1.0.0] - 2025-05-12
+### WIP Version
+- Style changes
+- Bugfixes 
+
