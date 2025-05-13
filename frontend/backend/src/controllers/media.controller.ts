@@ -55,12 +55,12 @@ export class MediaController{
           try {
             const { cim, beszerzes_datuma, tipus } = req.body;
         
-            // Kötelező mezők ellenőrzése
+
             if (!cim || !beszerzes_datuma || !tipus) {
               return res.status(400).json({ message: 'A cím, típus és beszerzés dátuma megadása kötelező.' });
             }
         
-            // Validációk
+
             if (!isValidCim(cim)) {
               return res.status(400).json({ message: 'Érvénytelen cím.' });
             }
@@ -74,7 +74,7 @@ export class MediaController{
             }
         
         
-            // Új példány létrehozása
+
             const newMedia = this.mediaTable.create({
               cim,
               beszerzes_datuma: new Date(beszerzes_datuma),
@@ -130,7 +130,7 @@ export class MediaController{
           }
       
       
-          // Mentés
+
           await this.mediaTable.save(media);
       
           res.json({ message: 'Média adatai sikeresen frissítve!', media });

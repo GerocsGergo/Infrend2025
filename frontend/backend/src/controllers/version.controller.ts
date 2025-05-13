@@ -30,21 +30,20 @@ export class VersionController {
             const changelogPath = join(__dirname, '../../../CHANGELOG.md');
             const changelogContent = readFileSync(changelogPath, 'utf-8');
             
-            // Extract all version entries (e.g., v0.0.0, v0.0.1, etc.)
+            // Extract all versions (e.g., v0.0.0, v0.0.1, etc.)
             const versionMatches = [...changelogContent.matchAll(/## \[(v?\d+\.\d+\.\d+)\]/g)];
             
             if (versionMatches.length > 0) {
-                // Extract versions as strings
                 const versions = versionMatches.map(match => match[1]);
                 
-                // Sort versions in descending order
+
                 versions.sort((a, b) => this.compareVersions(b, a));
 
-                // Return the most recent version
+
                 return versions[0];
             }
             
-            return "0.0.0";  // Default to 0.0.0 if no version found
+            return "0.0.0"; //default
         } catch (err) {
             console.error('Failed to parse CHANGELOG.md:', err);
             return "0.0.0";

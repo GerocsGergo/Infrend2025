@@ -19,7 +19,7 @@ export class BorrowingController{
 
     
 
-        getCustomerBorrowings = async(req, res) => { //beolvassa az ugyfel osszes kolcsonzését
+        getCustomerBorrowings = async(req, res) => {
             try {
                  const azonosito = req.params['azonosito'];
                 
