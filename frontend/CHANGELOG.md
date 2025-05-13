@@ -94,3 +94,8 @@
 ### Release Version
 - Changed Demo Images
 
+
+ ## [v1.1.2] - 2025-05-13
+### Release Version
+- Fixed Demo Images
+
