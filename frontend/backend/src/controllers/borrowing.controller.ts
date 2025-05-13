@@ -83,6 +83,7 @@ export class BorrowingController{
                 where: {sorszam: Number(sorszam)},
                 order: {sorszam: 'ASC'} 
               });
+
             }
             else {
               return res.status(400).json({ message: 'Nincs megadva keresési feltétel' });
@@ -91,6 +92,8 @@ export class BorrowingController{
             if (!media || (Array.isArray(media) && media.length === 0)) {
               return res.status(404).json({ message: 'Nincs ilyen médiaügyfél' });
             }
+
+
         
             res.json(media);
 
@@ -112,6 +115,12 @@ export class BorrowingController{
                   if (!media) {
                     return res.status(404).json({ message: 'Nincs ilyen média.' });
                   }
+
+                  // media statusz ne legyen selejtezett
+              if (media.statusz === 'selejtezett') {
+                return res.status(400).json({ message: 'Nem lehet törölni mert leselejtezett a média.' });
+              }
+
               
                   media.statusz = 'szabad';
                   await this.mediaTable.save(media);

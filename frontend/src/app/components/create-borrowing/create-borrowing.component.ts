@@ -25,6 +25,8 @@ export class CreateBorrowingComponent {
   szemelyiszam: string = '';
   lakcim: string = '';
 
+  nev: string = '';
+
   showUpdatePopup = false;
   fieldToUpdate: string = '';
   newValue: string = '';
@@ -47,6 +49,7 @@ export class CreateBorrowingComponent {
   closeUpdatePopup() {
     this.showUpdatePopup = false;
     this.newValue = '';
+    this.errorMessage = '';
   }
 
   addMedia() {
@@ -72,12 +75,20 @@ export class CreateBorrowingComponent {
 
   loadBorrowings() {
     this.borrowingService.getCustomerBorrowings(this.azonosito).subscribe({
-      next: (borrowings) => this.borrowings = borrowings,
+      next: (borrowings) => {
+        this.borrowings = borrowings
+        if (this.borrowings.length > 0) {
+          this.nev = this.borrowings[0].customer.nev;
+        } else {
+          this.nev = 'Ismeretlen ügyfél';
+        }
+      },
       error: (err) => {
         console.error('Failed to load borrowings', err);
         this.errorMessage = err.error.message;
       }
     });
+
   }
 
   openBackMenu(azonosito: number){

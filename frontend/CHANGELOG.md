@@ -83,3 +83,10 @@
 - Version counter in mainMenu
 - Change log in mainMenu
 
+ ## [v1.1.0] - 2025-05-13
+### Release Version
+- Added demo images
+- Fixed: the "selejtezett" media can be deleted in the borrowing anymore
+- Changed error message styles
+- Changed the lists so that they show the customer's name and the media's title
+

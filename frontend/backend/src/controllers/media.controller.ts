@@ -159,6 +159,10 @@ export class MediaController{
             return res.status(400).json({ message: 'A média ki van kölcsönözve, nem lehet módosítani a státuszt.' });
           }
 
+          if (media.statusz === 'selejtezett') {
+            return res.status(400).json({ message: 'A média már selejtezett.' });
+          }
+
           media.statusz = 'selejtezett';
           await this.mediaTable.save(media);
 

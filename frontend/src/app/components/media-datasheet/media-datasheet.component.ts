@@ -70,6 +70,7 @@ export class MediaDatasheetComponent implements OnInit{
       this.showUpdatePopup = false;
       this.fieldToUpdate = '';
       this.newValue = '';
+      this.errorMessage = '';
     }
 
     updateCustomer() {

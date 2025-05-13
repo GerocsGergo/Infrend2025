@@ -3,15 +3,15 @@
       <h1 class="title">VideoWarehouse</h1>
     </div>
   
-    <h2 class="menu-title">Ügyfél kölcsönzéseinek Listája</h2>
+    <h2 class="menu-title">Ügyfél kölcsönzéseinek Listája: {{ nev }}</h2>
   
     <div class="main-menu-island">
             <table class="customer-table" *ngIf="borrowings.length > 0">
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>Sorszám</th>
-                    <th>Azonosító</th>
+                    <th>Cím </th>
+                    <th>Ügyfél név</th>
                     <th>Kölcsönzés dátuma</th>
                     <th>Visszahozás dátuma</th>
                   </tr>
@@ -20,8 +20,8 @@
                   @for(borrowing of borrowings; track borrowing.id) {
                   <tr>
                     <td>{{ borrowing.id }}</td>
-                    <td>{{ borrowing.media.sorszam }}</td>
-                    <td>{{ borrowing.customer.azonosito }}</td>
+                    <td>{{ borrowing.media.cim }}</td>
+                    <td>{{ borrowing.customer.nev }}</td>
                     <td>{{ borrowing.kolcsonzes_datuma | date: 'yyyy-MM-dd' }}</td>
                     <td>{{ borrowing.visszahozas_datuma| date: 'yyyy-MM-dd' }}</td>
                   </tr>
