@@ -90,3 +90,7 @@
 - Changed error message styles
 - Changed the lists so that they show the customer's name and the media's title
 
+ ## [v1.1.1] - 2025-05-13
+### Release Version
+- Changed Demo Images
+
